@@ -61,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
             {
                 Log.d("MainActivity", "OnDrawerClosed");
                 super.onDrawerClosed(view);
-                //invalidateOptionsMenu();
+                invalidateOptionsMenu();
                 //syncState();
             }
 
@@ -69,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
             {
                 Log.d("MainActivity", "OnDrawerOpened");
                 super.onDrawerOpened(drawerView);
-                //invalidateOptionsMenu();
+                invalidateOptionsMenu();
                 //syncState();
             }
         };
@@ -77,22 +77,6 @@ public class MainActivity extends ActionBarActivity {
         drawerLayout.setDrawerListener(drawerToggle);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //drawerToggle.syncState();
-
-
-        /*ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                // Or read size directly from the view's width/height
-                int size = getResources().getDimensionPixelSize(R.dimen.shape_size);
-                outline.setOval(0, 0, size, size);
-            }
-        };
-
-        fab.setOutlineProvider(viewOutlineProvider);*/
-
-        //fab.setOutline(bt_circle);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -128,7 +112,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-   /*  @Override
+    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -148,5 +132,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }
