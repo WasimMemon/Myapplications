@@ -1,26 +1,21 @@
-package com.androprogrammer.test.myapplication1;
+package com.androprogrammer.test.materialapp1;
 
-import android.app.Activity;
-import android.graphics.Outline;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements ListView.OnItemClickListener
+{
     private android.support.v7.widget.RecyclerView mRecyclerView;
     private android.support.v7.widget.RecyclerView.Adapter mAdapter;
     private android.support.v7.widget.RecyclerView.LayoutManager mLayoutManager;
@@ -62,7 +57,6 @@ public class MainActivity extends ActionBarActivity {
                 Log.d("MainActivity", "OnDrawerClosed");
                 super.onDrawerClosed(view);
                 invalidateOptionsMenu();
-                //syncState();
             }
 
             public void onDrawerOpened(View drawerView)
@@ -70,7 +64,6 @@ public class MainActivity extends ActionBarActivity {
                 Log.d("MainActivity", "OnDrawerOpened");
                 super.onDrawerOpened(drawerView);
                 invalidateOptionsMenu();
-                //syncState();
             }
         };
 
@@ -101,36 +94,25 @@ public class MainActivity extends ActionBarActivity {
 
     private void setRef()
     {
+    	// create reference to the xml views
         mRecyclerView = (android.support.v7.widget.RecyclerView) findViewById(R.id.my_recycler_view);
         fab = (Button) findViewById(R.id.addButton);
-        drawerLayout = (android.support.v4.widget.DrawerLayout) findViewById(R.id.drawer);
+        drawerLayout = (android.support.v4.widget.DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout.setStatusBarBackground(R.color.primarydark);
+
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         leftDrawerList = (ListView) findViewById(R.id.list_drawer);
 
+        View list_header = getLayoutInflater().inflate(R.layout.drawerlist_header, null);
+        leftDrawerList.addHeaderView(list_header);
         navigationDrawerAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1, leftSliderData);
         leftDrawerList.setAdapter(navigationDrawerAdapter);
-    }
-
-
-    @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        leftDrawerList.setOnItemClickListener(this);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        Toast.makeText(getApplicationContext(), "Clicked on " + leftSliderData[position - 1], Toast.LENGTH_LONG).show();
     }
 }
