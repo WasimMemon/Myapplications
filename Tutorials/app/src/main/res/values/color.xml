@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#52bf90</color>
+    <color name="primarydark">#398564</color>
+    <color name="activity_bg">#e4e5e5</color>
+</resources>

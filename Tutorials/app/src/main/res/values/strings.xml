@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Tutorials</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_circular_image_view_demo">CircularImageViewDemo</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_video_player_demo">VideoPlayerDemo</string>
+    <string name="title_activity_battery_level_demo">BatteryLevelDemo</string>
+    <string name="title_activity_async_file_read_demo">AsyncFileReadDemo</string>
+    <string name="title_activity_frame_animation_demo">FrameAnimationDemo</string>
+    <string name="title_activity_system_setting_demo">SystemSettingDemo</string>
+    <string name="title_activity_track_user_demo">TrackUserDemo</string>
+    <string name="title_activity_take_picture_demo">TakePictureDemo</string>
+</resources>
