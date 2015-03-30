@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/activity_bg"
+    tools:context="com.androprogrammer.tutorials.samples.CircularImageViewDemo">
+
+    <com.androprogrammer.tutorials.util.CircularImageView
+        android:id="@+id/image1"
+        android:src="@drawable/businessman"
+        android:layout_centerHorizontal="true"
+        android:scaleType="center"
+        android:layout_width="@dimen/circularImage_width"
+        android:layout_height="@dimen/circularImage_height"/>
+
+    <com.androprogrammer.tutorials.util.CircularImageView
+        android:src="@drawable/user_noimage"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/image1"
+        android:layout_marginTop="10dp"
+        android:id="@+id/image2"
+        android:scaleType="center"
+        android:layout_width="@dimen/circularImage_width"
+        android:layout_height="@dimen/circularImage_height"/>
+
+</RelativeLayout>
