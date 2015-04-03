@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:padding="@dimen/padding_normal">
+
+    <ImageView
+        android:id="@+id/ducky"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:onClick="clicked"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        android:transitionName="ducky" />
+
+    <TextView
+        android:id="@+id/row_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/ducky"
+        android:gravity="center"
+        android:layout_marginTop="-30dp"
+        android:background="#40000000"
+        android:text="@string/app_name" />
+
+</RelativeLayout>

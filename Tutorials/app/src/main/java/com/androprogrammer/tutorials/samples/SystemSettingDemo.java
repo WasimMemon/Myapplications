@@ -3,13 +3,11 @@ package com.androprogrammer.tutorials.samples;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
-import android.provider.Settings;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -135,7 +133,8 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
         // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.button1:
-                android.provider.Settings.System.putInt(getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS, set_brightness);
+                android.provider.Settings.System.putInt(getContentResolver(),
+                        android.provider.Settings.System.SCREEN_BRIGHTNESS, set_brightness);
                 break;
             case R.id.button2:
                 AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -147,13 +146,6 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
         }
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_systemsetting_demo, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

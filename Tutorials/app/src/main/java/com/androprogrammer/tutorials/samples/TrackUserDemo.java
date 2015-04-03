@@ -1,11 +1,14 @@
 package com.androprogrammer.tutorials.samples;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.transition.Transition;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,7 +36,7 @@ public class TrackUserDemo extends Baseactivity
 
     private LatLng userLatLng;
 
-    private boolean IsFirstTimeLoad;
+    private boolean IsFirstTimeLoad = true;
 
     private LocationManager mLocationManager;
 
@@ -60,16 +63,17 @@ public class TrackUserDemo extends Baseactivity
 
         super.onCreate(savedInstanceState);
 
+
+
         setReference();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setToolbarTittle(this.getClass().getSimpleName());
 
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         initilizeMap();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override
@@ -78,10 +82,8 @@ public class TrackUserDemo extends Baseactivity
         super.onResume();
         if (!IsFirstTimeLoad)
         {
-            if(!mLocationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER))
-            {
-                Intent myIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(myIntent);
+            if(!mLocationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)) {
+                showGpsAlertDialog();
             }
             else {
                 Intent intent = new Intent(this, GetUserLocation.class);
@@ -118,8 +120,11 @@ public class TrackUserDemo extends Baseactivity
 
             if (!isGPSEnabled)
             {
-                Intent myIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(myIntent);
+
+                showGpsAlertDialog();
+
+                //"Location data is disabled.\nPlease enable it."
+
                 //service.getUserLocation(isGPSEnabled,isNetworkEnabled);
             }
 
@@ -139,9 +144,39 @@ public class TrackUserDemo extends Baseactivity
             googleMap.getUiSettings().setZoomControlsEnabled(true);
 
         } catch (Exception e) {
-            //Log.e(TAG , e.getMessage());
-            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
+            //e.printStackTrace();
         }
+    }
+
+    private void showGpsAlertDialog() {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TrackUserDemo.this);
+        alertDialogBuilder.setTitle("Gps Setting");
+        alertDialogBuilder.setMessage("Location data provider is disabled.\nPlease enable it to track location.");
+
+        alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                Intent myIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(myIntent);
+            }
+        });
+
+
+        alertDialogBuilder.setNegativeButton(android.R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.dismiss();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        alertDialog.show();
     }
 
     @Override

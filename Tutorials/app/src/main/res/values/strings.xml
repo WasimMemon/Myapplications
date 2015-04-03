@@ -15,4 +15,7 @@
     <string name="title_activity_system_setting_demo">SystemSettingDemo</string>
     <string name="title_activity_track_user_demo">TrackUserDemo</string>
     <string name="title_activity_take_picture_demo">TakePictureDemo</string>
+    <string name="title_activity_image_animation_demo">ImageAnimationDemo</string>
+    <string name="title_activity_image_animation_detail">ImageAnimationDetail</string>
+    <string name="title_activity_image_switcher_demo">ImageSwitcherDemo</string>
 </resources>
