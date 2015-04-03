@@ -10,7 +10,8 @@
         <item name="colorControlHighlight">@color/primary</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="windowActionModeOverlay">true</item>
-
+        <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
+        <item name="popupMenuStyle">@style/popupMenuStyle</item>
     </style>
 
     <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
@@ -29,6 +30,16 @@
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@android:color/white</item>
+        <item name="searchIcon">@android:drawable/ic_menu_search</item>
+
+    </style>
+
+    <style name="popupMenuStyle" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@android:color/white</item>
     </style>
 
 </resources>

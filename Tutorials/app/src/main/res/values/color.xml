@@ -3,4 +3,6 @@
     <color name="primary">#52bf90</color>
     <color name="primarydark">#398564</color>
     <color name="activity_bg">#e4e5e5</color>
+    <color name="second_primary">#e0ac69</color>
+    <color name="second_primarydark">#c68642</color>
 </resources>

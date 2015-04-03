@@ -52,12 +52,12 @@ public class GetUserLocation extends Service implements LocationListener
     public GetUserLocation() {
     }
 
-    @Override
+   /* @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
 
         return START_STICKY;
-    }
+    }*/
 
     public Location getUserLocation(boolean isGPSEnabled, boolean isNetworkEnabled)
     {
@@ -158,6 +158,11 @@ public class GetUserLocation extends Service implements LocationListener
 
     }
 
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
     public double getLatitude() {
         return latitude;
     }
@@ -186,11 +191,7 @@ public class GetUserLocation extends Service implements LocationListener
         {
             // Remove update listener when you don't require
             mLocationManager.removeUpdates(this);
+            mLocationManager = null;
         }
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
     }
 }

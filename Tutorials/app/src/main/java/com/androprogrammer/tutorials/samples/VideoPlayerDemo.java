@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;

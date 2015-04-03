@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +14,6 @@ import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 
 import com.androprogrammer.tutorials.R;
@@ -21,22 +22,23 @@ import com.androprogrammer.tutorials.activities.Baseactivity;
 public class BatteryLevelDemo extends Baseactivity {
 
     protected View view;
-    protected TextView batteryPercent, ChargingState;
+    protected TextView batteryPercent, ChargingState, wifi, mobileData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
-            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+            getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
+            //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 
             //set the transition
             Transition ts = new Slide();
-            ts.setDuration(5000);
+            ts.setDuration(3000);
             getWindow().setEnterTransition(ts);
             getWindow().setExitTransition(ts);
-        } else {
-            //listViewCarrier.setIndicatorBoundsRelative(500, 0);
+
+            //getWindow().setNavigationBarColor(getResources().getColor(R.color.second_primary));
         }
 
         super.onCreate(savedInstanceState);
@@ -57,6 +59,24 @@ public class BatteryLevelDemo extends Baseactivity {
             ChargingState.setText("no");
         }
 
+        if (getMobileDataStatus())
+        {
+            mobileData.setText("Connected");
+        }
+        else
+        {
+            mobileData.setText("disabled");
+        }
+
+        if (getWifiStatus())
+        {
+            wifi.setText("Connected");
+        }
+        else
+        {
+            wifi.setText("disabled");
+        }
+
     }
 
     @Override
@@ -66,6 +86,8 @@ public class BatteryLevelDemo extends Baseactivity {
 
         batteryPercent = (TextView) view.findViewById(R.id.tv_percentage);
         ChargingState = (TextView) view.findViewById(R.id.tv_state);
+        wifi = (TextView) view.findViewById(R.id.tv_wifiData);
+        mobileData = (TextView) view.findViewById(R.id.tv_mobileData);
     }
 
 
@@ -135,5 +157,42 @@ public class BatteryLevelDemo extends Baseactivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public boolean getWifiStatus()
+    {
+        // To get System Connectivity status
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork)
+        {
+            // Check For Wifi Status
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+                return true;
+            else
+                return false;
+        }
+
+        return false;
+    }
+
+    public boolean getMobileDataStatus()
+    {
+        // To get System Connectivity status
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork)
+        {
+            // Check For Mobile Data Status
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+                return true;
+            else
+                return false;
+        }
+
+        return false;
     }
 }
