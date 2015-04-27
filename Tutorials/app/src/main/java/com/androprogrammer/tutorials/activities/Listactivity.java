@@ -1,7 +1,5 @@
 package com.androprogrammer.tutorials.activities;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -11,23 +9,30 @@ import android.os.Environment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.androprogrammer.tutorials.R;
+import com.androprogrammer.tutorials.customviews.CustomListView;
 import com.androprogrammer.tutorials.samples.AsyncFileReadDemo;
 import com.androprogrammer.tutorials.samples.BatteryLevelDemo;
 import com.androprogrammer.tutorials.samples.CircularImageViewDemo;
 import com.androprogrammer.tutorials.samples.FrameAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageSwitcherDemo;
+import com.androprogrammer.tutorials.samples.ImageTabViewDemo;
 import com.androprogrammer.tutorials.samples.SystemSettingDemo;
+import com.androprogrammer.tutorials.samples.TabViewDemo;
 import com.androprogrammer.tutorials.samples.TakePictureDemo;
 import com.androprogrammer.tutorials.samples.TrackUserDemo;
 import com.androprogrammer.tutorials.samples.VideoPlayerDemo;
@@ -35,26 +40,28 @@ import com.androprogrammer.tutorials.samples.VideoPlayerDemo;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 
-public class Listactivity extends Baseactivity implements ListView.OnItemClickListener, SearchView.OnQueryTextListener
+public class Listactivity extends Baseactivity implements ListView.OnItemClickListener, SearchView.OnQueryTextListener, CustomListView.ScrollObserver
 {
     protected View view;
-    protected ListView lv_tutorials;
+    protected com.androprogrammer.tutorials.customviews.CustomListView lv_tutorials;
     protected Map<String,Object> tutorials;
     protected File image;
     protected ImageButton btShare;
-    protected android.widget.Filter filter;
-    ArrayAdapter<String> adapter = null;;
+    protected ArrayAdapter<String> adapter = null;
+
+    private static String TAG = "Listactivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setReference();
+
+        setToolbarElevation(7);
 
         addListItem();
 
@@ -67,7 +74,6 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
 
         //Log.d("List", "" + tutorials.size());
 
-
         String[] keys = tutorials.keySet().toArray(
                 new String[tutorials.keySet().size()]);
 
@@ -78,10 +84,6 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
 
         lv_tutorials.setOnItemClickListener(this);
         lv_tutorials.setTextFilterEnabled(false);
-
-        //lv_tutorials.set(true);
-
-        //filter = lv_tutorials.
 
 
         btShare.setOnClickListener(new View.OnClickListener() {
@@ -102,9 +104,32 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
     @Override
     public void setReference() {
         view = LayoutInflater.from(this).inflate(R.layout.activity_mainlist, container);
-        lv_tutorials = (ListView) view.findViewById(R.id.lv_tutorials);
+        lv_tutorials = (com.androprogrammer.tutorials.customviews.CustomListView) view.findViewById(R.id.lv_tutorials);
+        lv_tutorials.setListener(this);
+
+        lv_tutorials.addHeaderView(getLayoutInflater().inflate(R.layout.mainlist_header, null));
+
         btShare = (ImageButton) view.findViewById(R.id.list_bt_share);
         tutorials = new TreeMap<String,Object>();
+    }
+
+    private void hideViews()
+    {
+        Log.d(TAG,"hideview");
+        toolbar.animate().alpha(0).setDuration(300)
+                .translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) btShare.getLayoutParams();
+        int fabBottomMargin = lp.bottomMargin;
+
+        btShare.animate().setDuration(300).translationY(btShare.getHeight()+fabBottomMargin)
+                .setInterpolator(new AccelerateInterpolator(2)).start();
+    }
+
+    private void showViews() {
+        Log.d(TAG,"showview");
+        toolbar.animate().alpha(1).setDuration(300).translationY(0).setInterpolator(new DecelerateInterpolator(2));
+        btShare.animate().setDuration(300).translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
 
     public void addListItem()
@@ -119,10 +144,8 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         tutorials.put("Take Image", new Intent(this, TakePictureDemo.class));
         tutorials.put("Image Grid View", new Intent(this, ImageAnimationDemo.class));
         tutorials.put("Image Switcher", new Intent(this, ImageSwitcherDemo.class));
-
-        /*if (tutorials != null) {
-            tutorials.put("Circular Image View", new Intent(this, CircularImageViewDemo.class));
-        }*/
+        tutorials.put("Tabs with Toolbar", new Intent(this, TabViewDemo.class));
+        tutorials.put("Icon Tabs with Toolbar", new Intent(this, ImageTabViewDemo.class));
     }
 
     private void captureScreen(){
@@ -154,7 +177,6 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         MenuItem item = menu.findItem(R.id.search);
         SearchView sv = (SearchView) MenuItemCompat.getActionView(item);
         sv.setOnQueryTextListener(this);
-        //sv.setIconifiedByDefault(false);
 
         return true;
     }
@@ -171,13 +193,7 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
             case R.id.action_settings :
                 break;
 
-            /*case R.id.action_share:
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("image/jpg");
-                sharingIntent.putExtra(Intent.EXTRA_TITLE, getApplicationInfo().name);
-                sharingIntent.putExtra(android.content.Intent.EXTRA_STREAM, Uri.fromFile(image));
-                startActivity(Intent.createChooser(sharingIntent, "Share App using"));
-                break;*/
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -207,5 +223,15 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         }
 
         return true;
+    }
+
+    @Override
+    public void onHide() {
+        hideViews();
+    }
+
+    @Override
+    public void onShow() {
+        showViews();
     }
 }

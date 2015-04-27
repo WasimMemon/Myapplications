@@ -31,7 +31,9 @@ public class ImageSwitcherDemo extends Baseactivity {
 
         setReference();
 
-        setToolbarTittle(this.getClass().getSimpleName());
+        setToolbarElevation(7);
+
+        setToolbarSubTittle(this.getClass().getSimpleName());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

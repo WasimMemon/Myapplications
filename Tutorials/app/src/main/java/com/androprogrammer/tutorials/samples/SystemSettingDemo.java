@@ -40,15 +40,15 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
             ts.setDuration(5000);
             getWindow().setEnterTransition(ts);
             getWindow().setExitTransition(ts);
-        } else {
-            //listViewCarrier.setIndicatorBoundsRelative(500, 0);
         }
 
         super.onCreate(savedInstanceState);
 
         setReference();
 
-        setToolbarTittle(this.getClass().getSimpleName());
+        setToolbarElevation(7);
+
+        setToolbarSubTittle(this.getClass().getSimpleName());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

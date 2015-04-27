@@ -67,9 +67,11 @@ public class TrackUserDemo extends Baseactivity
 
         setReference();
 
+        setToolbarElevation(7);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setToolbarTittle(this.getClass().getSimpleName());
+        setToolbarSubTittle(this.getClass().getSimpleName());
 
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 

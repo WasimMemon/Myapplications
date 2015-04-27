@@ -39,36 +39,7 @@ public class CircularImageView extends ImageView {
     }
 
 
-    /*@Override
-    protected void onDraw(Canvas canvas) {
-        BitmapDrawable drawable = (BitmapDrawable) getDrawable();
-
-        if (drawable == null) {
-            return;
-        }
-
-        if (getWidth() == 0 || getHeight() == 0) {
-            return;
-        }
-
-        Bitmap fullSizeBitmap = drawable.getBitmap();
-
-        int scaledWidth = getMeasuredWidth();
-        int scaledHeight = getMeasuredHeight();
-
-        // Bitmap roundBitmap = getRoundedCornerBitmap(mScaledBitmap);
-
-        // Bitmap roundBitmap = getRoundedCornerBitmap(getContext(),
-        // mScaledBitmap, 10, scaledWidth, scaledHeight, false, false,
-        // false, false);
-        // canvas.drawBitmap(roundBitmap, 0, 0, null);
-
-        Bitmap circleBitmap = getCircledBitmap(fullSizeBitmap, fullSizeBitmap.getWidth());
-
-        canvas.drawBitmap(circleBitmap, 0, 0, null);
-    }
-
-    private Bitmap getCircledBitmap(Bitmap bitmap, int radius) {
+    /*private Bitmap getCircledBitmap(Bitmap bitmap, int radius) {
         int targetWidth = 50;
         int targetHeight = 50;
         Bitmap result = Bitmap.createBitmap(bitmap.getWidth(),
@@ -181,12 +152,12 @@ public class CircularImageView extends ImageView {
         // init paint
         paint = new Paint();
         paint.setAntiAlias(true);
+
         paintBorder = new Paint();
         setBorderColor(Color.WHITE);
-        setBorderWidth(2);
         paintBorder.setAntiAlias(true);
-        paintBorder.setDither(true);
-        paintBorder.setShadowLayer(10, 100, 100, Color.CYAN);
+        this.setLayerType(LAYER_TYPE_SOFTWARE, paintBorder);
+        paintBorder.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
         //paintBorder.setStrokeWidth(1);
     }
 
@@ -217,32 +188,34 @@ public class CircularImageView extends ImageView {
         // init shader
         if (image != null)
         {
-            shader = new BitmapShader(Bitmap.createScaledBitmap(image,
-                    canvas.getWidth() - borderWidth,
-                    canvas.getHeight() - borderWidth, false),
-                    Shader.TileMode.REPEAT,
-                    Shader.TileMode.MIRROR);
+            shader = new BitmapShader(Bitmap.createScaledBitmap(image, canvas.getWidth(),
+                    canvas.getHeight(), false),
+                    Shader.TileMode.CLAMP,
+                    Shader.TileMode.CLAMP);
 
             paint.setShader(shader);
             int circleCenter = viewWidth / 2;
 
-            // circleCenter is the x or y of the view's center
-            // radius is the radius in pixels of the circle to be drawn
-            // paint contains the shader that will texture the shape
-            canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth,
-                    circleCenter + borderWidth, paintBorder);
-            canvas.drawCircle(circleCenter, circleCenter,
-                    circleCenter, paint);
+            canvas.drawCircle(circleCenter + borderWidth,
+                    circleCenter + borderWidth,
+                    circleCenter + borderWidth - 4.0f,
+                    paintBorder);
+
+            canvas.drawCircle(circleCenter + borderWidth,
+                    circleCenter + borderWidth,
+                    circleCenter - 4.0f, paint);
         }
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = measureWidth(widthMeasureSpec);
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
+        int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = measureHeight(heightMeasureSpec, widthMeasureSpec);
         viewWidth = width - (borderWidth * 2);
         viewHeight = height - (borderWidth * 2);
-        setMeasuredDimension(viewWidth, viewHeight);
+
+        setMeasuredDimension(width, height);
     }
 
     private int measureWidth(int measureSpec) {
