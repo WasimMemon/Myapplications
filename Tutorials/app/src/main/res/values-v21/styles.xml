@@ -2,7 +2,7 @@
 <resources>
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/primary</item>
+        <!--<item name="android:statusBarColor">@color/primarydark</item>-->
         <!--<item name="android:navigationBarColor">@android:color/white</item>
         <item name="android:navigationIcon">@color/primary</item>-->
         <item name="android:windowContentTransitions">true</item>

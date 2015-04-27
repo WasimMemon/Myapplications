@@ -18,7 +18,11 @@ public class CircularImageViewDemo extends Baseactivity {
         super.onCreate(savedInstanceState);
         setReference();
 
+        setToolbarElevation(7);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setToolbarSubTittle(this.getClass().getSimpleName());
     }
 
     @Override
@@ -34,12 +38,11 @@ public class CircularImageViewDemo extends Baseactivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
-                //NavUtils.navigateUpFromSameTask(this);
-  //              return true;
             break;
         }
 

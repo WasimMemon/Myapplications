@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:background="@color/activity_bg"
+    android:paddingTop="?attr/actionBarSize"
     tools:context="com.androprogrammer.tutorials.samples.CircularImageViewDemo">
 
     <com.androprogrammer.tutorials.util.CircularImageView

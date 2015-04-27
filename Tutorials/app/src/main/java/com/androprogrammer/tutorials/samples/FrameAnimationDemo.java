@@ -26,9 +26,9 @@ public class FrameAnimationDemo extends Baseactivity
 
         super.onCreate(savedInstanceState);
         setReference();
-        setToolbarTittle(this.getClass().getSimpleName());
+        setToolbarSubTittle(this.getClass().getSimpleName());
 
-        setToolbarTittle(this.getClass().getSimpleName());
+        setToolbarElevation(7);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

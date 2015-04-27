@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_normal"
     android:background="@color/activity_bg"
     tools:context="com.androprogrammer.tutorials.activities.Listactivity">
 
@@ -10,29 +9,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
+        android:padding="@dimen/padding_normal"
         android:layout_centerHorizontal="true">
 
-        <ListView
+        <com.androprogrammer.tutorials.customviews.CustomListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lv_tutorials"
             android:divider="@color/activity_bg"
             android:background="@android:color/white"
-            android:dividerHeight="2dip"
+            android:dividerHeight="7dip"
+            android:fitsSystemWindows="true"
+            android:scrollbars="none"
             android:minHeight="?android:listPreferredItemHeight"
             android:overScrollMode="never"
             android:choiceMode="singleChoice" />
 
         <ImageButton
             android:id="@+id/list_bt_share"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
             android:src="@mipmap/ic_action_social_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:padding="@dimen/padding_normal"
             android:background="@drawable/button_round"
-            android:elevation="5dp"
+            android:elevation="7dp"
             android:layout_gravity="end|bottom" />
 
     </FrameLayout>
