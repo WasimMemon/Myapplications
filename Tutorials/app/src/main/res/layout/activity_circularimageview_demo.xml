@@ -6,7 +6,7 @@
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.androprogrammer.tutorials.samples.CircularImageViewDemo">
 
-    <com.androprogrammer.tutorials.util.CircularImageView
+    <com.androprogrammer.tutorials.customviews.CircularImageView
         android:id="@+id/image1"
         android:src="@mipmap/businessman"
         android:layout_centerHorizontal="true"
@@ -14,7 +14,7 @@
         android:layout_width="@dimen/circularImage_width"
         android:layout_height="@dimen/circularImage_height"/>
 
-    <com.androprogrammer.tutorials.util.CircularImageView
+    <com.androprogrammer.tutorials.customviews.CircularImageView
         android:src="@mipmap/user_noimage"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/image1"
