@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.activities.Baseactivity;
@@ -24,9 +23,11 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
 
     protected Button Bbright,Bvolume;
     protected SeekBar brightness,volume;
-    protected TextView tv_bright,tv_volume;
+    //protected TextView tv_bright,tv_volume;
     protected int set_brightness,set_volume;
     protected float value_brightness,value_volume;
+
+    private AudioManager audioManager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,8 +57,10 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
         Bvolume.setOnClickListener(this);
 
         try {
-            set_brightness = android.provider.Settings.System.getInt(getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
-            tv_bright.setText(set_brightness + "");
+            set_brightness = android.provider.Settings.System.getInt(getContentResolver(),
+                    android.provider.Settings.System.SCREEN_BRIGHTNESS);
+
+            //tv_bright.setText(set_brightness + "");
             brightness.setProgress(set_brightness);
         } catch (Settings.SettingNotFoundException e) {
             // TODO Auto-generated catch block
@@ -71,7 +74,7 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
                 set_brightness = progress;
-                tv_bright.setText(set_brightness + "");
+                //tv_bright.setText(set_brightness + "");
             }
 
             @Override
@@ -86,6 +89,11 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
 
             }
         });
+
+        volume.setMax(audioManager
+                .getStreamMaxVolume(AudioManager.STREAM_RING));
+        volume.setProgress(audioManager
+                .getStreamVolume(AudioManager.STREAM_RING));
 
         volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -106,7 +114,7 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
                 set_volume = progress;
-                tv_volume.setText(set_volume + "");
+                //tv_volume.setText(set_volume + "");
             }
         });
 
@@ -118,10 +126,11 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
 
         view = LayoutInflater.from(this).inflate(R.layout.activity_systemsetting_demo, container);
 
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         brightness = (SeekBar) view.findViewById(R.id.Sbbrihgtness);
         volume= (SeekBar) view.findViewById(R.id.Sbvolume);
-        tv_bright = (TextView) view.findViewById(R.id.tv_brightness);
-        tv_volume = (TextView) view.findViewById(R.id.tv_volume);
+        /*tv_bright = (TextView) view.findViewById(R.id.tv_brightness);
+        tv_volume = (TextView) view.findViewById(R.id.tv_volume);*/
         Bbright = (Button) view.findViewById(R.id.button1);
         Bvolume = (Button) view.findViewById(R.id.button2);
 
@@ -137,8 +146,8 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
                         android.provider.Settings.System.SCREEN_BRIGHTNESS, set_brightness);
                 break;
             case R.id.button2:
-                AudioManager audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                audio.setStreamVolume(AudioManager.STREAM_RING, set_volume, 0);
+
+                audioManager.setStreamVolume(AudioManager.STREAM_RING, set_volume, 0);
 
                 break;
             default:
@@ -157,9 +166,6 @@ public class SystemSettingDemo extends Baseactivity implements View.OnClickListe
             case android.R.id.home:
                 finish();
                 // NavUtils.navigateUpFromSameTask(this);
-                // return true;
-                break;
-            case R.id.action_settings:
                 // return true;
                 break;
         }

@@ -70,7 +70,7 @@ public class ImageTabViewDemo extends Baseactivity implements ActionBar.TabListe
 
         tabs_header.setBackgroundColor(getResources().getColor(R.color.primary));
         tabs_header.setTitleColor(Color.WHITE);
-        tabs_header.setFittingChildren(true);
+        //tabs_header.setFittingChildren(true);
         tabs_header.setTabType(SlidingTabLayout.TabType.ICON);
         tabs_header.setViewPager(mPager);
     }

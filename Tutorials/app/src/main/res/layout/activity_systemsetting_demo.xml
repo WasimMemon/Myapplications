@@ -54,14 +54,14 @@
         android:layout_marginTop="24dp"
         android:text="Set Volume" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_brightness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Sbbrihgtness"
         android:layout_toRightOf="@+id/button2"
         android:text="0"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
     <TextView
         android:id="@+id/textView2"
@@ -73,14 +73,14 @@
         android:text="Volume"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Sbvolume"
         android:layout_alignLeft="@+id/tv_brightness"
         android:text="0"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
 
 </RelativeLayout>

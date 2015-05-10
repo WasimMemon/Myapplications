@@ -11,8 +11,6 @@ import android.widget.ListView;
  */
 public class CustomListView extends ListView implements AbsListView.OnScrollListener {
 
-    private static final int HIDE_THRESHOLD = 1;
-    private int scrolledDistance = 0;
     private boolean controlsVisible = true;
     private ScrollObserver scrolllistner;
     private int mLastFirstVisibleItem;
@@ -49,16 +47,16 @@ public class CustomListView extends ListView implements AbsListView.OnScrollList
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
     {
 
-        Log.d(TAG, "scrolledDistance- " + scrolledDistance +  " - visibleItemCount - " + visibleItemCount + "-firstVisibleItem-" + firstVisibleItem );
+        Log.d(TAG,"- visibleItemCount - " + visibleItemCount + "-firstVisibleItem-" + firstVisibleItem );
 
-        /*if (firstVisibleItem == 0)
+        if (firstVisibleItem == 0)
         {
             if(!controlsVisible) {
                 scrolllistner.onShow();
                 controlsVisible = true;
             }
         }else {
-*/
+
             if (mLastFirstVisibleItem < firstVisibleItem) {
                 scrolllistner.onHide();
                 controlsVisible = false;
@@ -69,7 +67,7 @@ public class CustomListView extends ListView implements AbsListView.OnScrollList
                 controlsVisible = true;
             }
             mLastFirstVisibleItem = firstVisibleItem;
-        //}
+        }
 
         /*onMainContentScrolled(firstVisibleItem <= ITEMS_THRESHOLD ? 0 : Integer.MAX_VALUE,
                 lastFvi - firstVisibleItem > 0 ? Integer.MIN_VALUE :

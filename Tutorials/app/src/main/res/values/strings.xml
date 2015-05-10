@@ -19,4 +19,5 @@
     <string name="title_activity_image_animation_detail">ImageAnimationDetail</string>
     <string name="title_activity_image_switcher_demo">ImageSwitcherDemo</string>
     <string name="title_activity_tab_view_demo">TabViewDemo</string>
+    <string name="title_activity_push_notification_demo">PushNotificationDemo</string>
 </resources>

@@ -31,6 +31,7 @@ import com.androprogrammer.tutorials.samples.FrameAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageSwitcherDemo;
 import com.androprogrammer.tutorials.samples.ImageTabViewDemo;
+import com.androprogrammer.tutorials.samples.PushNotificationDemo;
 import com.androprogrammer.tutorials.samples.SystemSettingDemo;
 import com.androprogrammer.tutorials.samples.TabViewDemo;
 import com.androprogrammer.tutorials.samples.TakePictureDemo;
@@ -48,12 +49,13 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
 {
     protected View view;
     protected com.androprogrammer.tutorials.customviews.CustomListView lv_tutorials;
-    protected Map<String,Object> tutorials;
     protected File image;
     protected ImageButton btShare;
     protected ArrayAdapter<String> adapter = null;
-
     private static String TAG = "Listactivity";
+
+    public static Listactivity listActivity;
+    public Map<String,Object> tutorials;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         setReference();
 
         setToolbarElevation(7);
+
+        //toolbar.setLogo(R.mipmap.ic_launcher);
 
         addListItem();
 
@@ -99,6 +103,9 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
             }
         });
 
+        // To access it from service.
+        listActivity = this;
+
     }
 
     @Override
@@ -111,6 +118,11 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
 
         btShare = (ImageButton) view.findViewById(R.id.list_bt_share);
         tutorials = new TreeMap<String,Object>();
+    }
+
+    public static Listactivity getInstance()
+    {
+        return listActivity;
     }
 
     private void hideViews()
@@ -146,6 +158,7 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         tutorials.put("Image Switcher", new Intent(this, ImageSwitcherDemo.class));
         tutorials.put("Tabs with Toolbar", new Intent(this, TabViewDemo.class));
         tutorials.put("Icon Tabs with Toolbar", new Intent(this, ImageTabViewDemo.class));
+        tutorials.put("Push Notification", new Intent(this, PushNotificationDemo.class));
     }
 
     private void captureScreen(){
