@@ -5,6 +5,7 @@
     android:id="@+id/watch_view_stub"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e4e5e5"
     app:rectLayout="@layout/rect_activity_list"
     app:roundLayout="@layout/round_activity_list"
     tools:context=".ListActivity"

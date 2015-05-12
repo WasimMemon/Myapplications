@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,6 +26,8 @@ public class ListActivity extends Activity implements GoogleApiClient.Connection
     private WearableListView mListView;
 
     private ArrayList<String> listItems;
+
+    private TextView tv_header;
 
     Node mNode; // the connected device to send the message to
     GoogleApiClient mGoogleApiClient;
@@ -52,6 +55,9 @@ public class ListActivity extends Activity implements GoogleApiClient.Connection
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mListView = (WearableListView) stub.findViewById(R.id.listView1);
+
+                // This is our list header
+                tv_header = (TextView) findViewById(R.id.tv_header);
 
                 mListView.setAdapter(new MyAdapter(ListActivity.this, listItems));
                 mListView.setClickListener(ListActivity.this);
@@ -157,7 +163,7 @@ public class ListActivity extends Activity implements GoogleApiClient.Connection
 
     @Override
     public void onTopEmptyRegionClick() {
-
+        Toast.makeText(this, "You tapped on Top empty area", Toast.LENGTH_SHORT).show();
     }
 
 
