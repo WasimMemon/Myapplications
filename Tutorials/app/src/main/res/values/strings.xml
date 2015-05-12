@@ -20,4 +20,7 @@
     <string name="title_activity_image_switcher_demo">ImageSwitcherDemo</string>
     <string name="title_activity_tab_view_demo">TabViewDemo</string>
     <string name="title_activity_push_notification_demo">PushNotificationDemo</string>
+    <string name="title_activity_set_wallpaper_demo">SetWallpaperDemo</string>
+    <string name="str_opengallary">Click To Open Gallary</string>
+    <string name="str_setwallpaper">Set As Wallpaper</string>
 </resources>

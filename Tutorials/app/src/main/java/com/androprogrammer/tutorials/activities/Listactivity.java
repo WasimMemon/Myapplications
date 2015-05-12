@@ -32,6 +32,7 @@ import com.androprogrammer.tutorials.samples.ImageAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageSwitcherDemo;
 import com.androprogrammer.tutorials.samples.ImageTabViewDemo;
 import com.androprogrammer.tutorials.samples.PushNotificationDemo;
+import com.androprogrammer.tutorials.samples.SetWallpaperDemo;
 import com.androprogrammer.tutorials.samples.SystemSettingDemo;
 import com.androprogrammer.tutorials.samples.TabViewDemo;
 import com.androprogrammer.tutorials.samples.TakePictureDemo;
@@ -159,6 +160,7 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         tutorials.put("Tabs with Toolbar", new Intent(this, TabViewDemo.class));
         tutorials.put("Icon Tabs with Toolbar", new Intent(this, ImageTabViewDemo.class));
         tutorials.put("Push Notification", new Intent(this, PushNotificationDemo.class));
+        tutorials.put("Change Wallpaper", new Intent(this, SetWallpaperDemo.class));
     }
 
     private void captureScreen(){

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:orientation="horizontal"
-    android:padding="11dp"
+    android:padding="8dp"
     android:gravity="center">
 
     <TextView
@@ -12,13 +12,13 @@
         android:textStyle="bold"
         android:ellipsize="end"
         android:maxEms="15"
+        android:padding="10dp"
         android:ems="15"
         android:background="@android:color/white"
         android:textColor="@android:color/black"
-        android:alpha="0.5"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:layout_height="52dp"
+        android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:textSize="16sp"
         android:id="@+id/row_tv_name" />
