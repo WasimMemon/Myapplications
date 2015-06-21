@@ -138,6 +138,10 @@
             android:name=".samples.SetWallpaperDemo"
             android:label="@string/app_name" >
         </activity>
+	<activity
+            android:name=".samples.ViewPagerDemo"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
