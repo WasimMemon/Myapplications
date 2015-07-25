@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="@dimen/padding_normal">
+
+    <ImageView
+        android:id="@+id/row_iv_appicon"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/row_tv_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="Medium Text"
+        android:padding="@dimen/padding_small"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/row_tv_packagename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="Medium Text"
+        android:visibility="gone"
+        android:padding="@dimen/padding_small"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <CheckBox
+        android:id="@+id/row_cb_visiblity"
+        android:layout_gravity="end|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp" />
+
+</FrameLayout>

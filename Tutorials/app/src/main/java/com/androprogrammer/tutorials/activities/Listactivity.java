@@ -154,7 +154,7 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         tutorials.put("Video Player", new Intent(this, VideoPlayerDemo.class));
         tutorials.put("Circular Image View", new Intent(this, CircularImageViewDemo.class));
         tutorials.put("Track User Location", new Intent(this, TrackUserDemo.class));
-        tutorials.put("Take Image", new Intent(this, TakePictureDemo.class));
+	tutorials.put("Crop and Resize Image", new Intent(this, TakePictureDemo.class));
         tutorials.put("Image Grid View", new Intent(this, ImageAnimationDemo.class));
         tutorials.put("Image Switcher", new Intent(this, ImageSwitcherDemo.class));
         tutorials.put("Tabs with Toolbar", new Intent(this, TabViewDemo.class));

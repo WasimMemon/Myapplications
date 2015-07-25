@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.androprogrammer.tutorials.samples.AppsListviewDemo">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/padding_normal"
+        android:layout_centerHorizontal="true">
+
+        <com.androprogrammer.tutorials.customviews.CustomListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_allapps"
+            android:divider="@color/activity_bg"
+            android:background="@android:color/white"
+            android:dividerHeight="7dip"
+            android:fitsSystemWindows="true"
+            android:scrollbars="none"
+            android:minHeight="?android:listPreferredItemHeight"
+            android:overScrollMode="never"
+            android:choiceMode="singleChoice" />
+
+        <ImageButton
+            android:id="@+id/list_bt_action"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/ic_action_visibility_on"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:padding="@dimen/padding_normal"
+            android:background="@drawable/button_round"
+            android:elevation="7dp"
+            android:layout_gravity="end|bottom" />
+
+    </FrameLayout>
+
+</RelativeLayout>
