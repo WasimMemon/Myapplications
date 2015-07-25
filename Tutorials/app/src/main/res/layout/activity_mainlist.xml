@@ -21,6 +21,7 @@
             android:dividerHeight="7dip"
             android:fitsSystemWindows="true"
             android:scrollbars="none"
+            tools:listitem="@layout/row_applist_item"
             android:minHeight="?android:listPreferredItemHeight"
             android:overScrollMode="never"
             android:choiceMode="singleChoice" />
