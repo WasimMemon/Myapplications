@@ -20,7 +20,13 @@
     <string name="title_activity_image_switcher_demo">ImageSwitcherDemo</string>
     <string name="title_activity_tab_view_demo">TabViewDemo</string>
     <string name="title_activity_push_notification_demo">PushNotificationDemo</string>
-    <string name="title_activity_set_wallpaper_demo">SetWallpaperDemo</string>
-    <string name="str_opengallary">Click To Open Gallary</string>
-    <string name="str_setwallpaper">Set As Wallpaper</string>
+    <string name="title_activity_apps_listview_demo">AppsListviewDemo</string>
+    <string name="admin_receiver_status_enabled">Admin Permission Enable</string>
+    <string name="admin_receiver_status">Receiver status</string>
+    <string name="admin_receiver_status_disable_warning">Allows the holder to add or remove active device administrators. Should never be needed for normal apps.</string>
+    <string name="admin_receiver_status_disabled">Admin Permission denied.</string>
+    <string name="admin_receiver_status_pw_changed">Password changed by user</string>
+    <string name="title_activity_view_pager_demo">ViewPagerDemo</string>
+    <string name="title_activity_voice_input_demo">VoiceInputDemo</string>
+    <string name="title_activity_change_theme_demo">ChangeThemeDemo</string>
 </resources>

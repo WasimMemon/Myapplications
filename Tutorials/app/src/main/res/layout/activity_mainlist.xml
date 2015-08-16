@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_bg"
     tools:context="com.androprogrammer.tutorials.activities.Listactivity">
 
     <FrameLayout
@@ -16,8 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lv_tutorials"
-            android:divider="@color/activity_bg"
-            android:background="@android:color/white"
+            android:divider="@android:color/transparent"
             android:dividerHeight="7dip"
             android:fitsSystemWindows="true"
             android:scrollbars="none"

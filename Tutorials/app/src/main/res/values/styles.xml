@@ -1,10 +1,7 @@
 <resources>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primarydark</item>
-        <item name="colorAccent">@color/primary</item>
-        <item name="colorControlHighlight">@color/primary</item>
+    <!--<style name="ThemeApp.Green.Base" parent="Theme.AppCompat.Light">-->
+    <style name="AppTheme.Base.Green" parent="AppTheme.Green">
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
@@ -16,8 +13,47 @@
         <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base"/>
+    <style name="AppTheme.Base.Green.Dark" parent="AppTheme.Green">
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@color/activity_bg_black</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
+        <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
+    </style>
+
+    <style name="AppTheme.Base.Purple" parent="AppTheme.Purple">
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@color/activity_bg</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
+        <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
+    </style>
+
+    <style name="AppTheme.Base.Purple.Dark" parent="AppTheme.Purple">
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@color/activity_bg_black</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
+        <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
+    </style>
+
+    <!-- Base application themes. -->
+    <style name="ThemeApp.Green" parent="AppTheme.Base.Green"/>
+    <style name="ThemeApp.Green.Dark" parent="AppTheme.Base.Green.Dark"/>
+    <style name="ThemeApp.Purple" parent="AppTheme.Base.Purple"/>
+    <style name="ThemeApp.Purple.Dark" parent="AppTheme.Base.Purple.Dark"/>
 
     <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
         <!-- Used to for the title of the Toolbar -->
@@ -29,7 +65,7 @@
         <!-- Used to color the overflow menu icon -->
         <item name="actionMenuTextColor">#fff</item>
         <!-- Color of the Toolbar -->
-        <item name="android:background">@color/primary</item>
+        <item name="android:background">@color/primary_green</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
@@ -41,6 +77,15 @@
         <item name="queryBackground">@android:color/white</item>
         <item name="searchIcon">@android:drawable/ic_menu_search</item>
 
+    </style>
+
+    <style name="MyTitledActivityDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTitleBackgroundStyle">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">#22000000</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="popupMenuStyle" parent="@android:style/Widget.PopupMenu">

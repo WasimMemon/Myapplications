@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
+    tools:context="com.androprogrammer.tutorials.samples.ChangeThemeDemo">
+
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?attr/colorPrimary">
+
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_darkTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="5dip"
+            android:textColor="@android:color/white"
+            android:text="Dark Theme"
+            tools:text="Dark Theme"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:padding="10dip"
+        android:background="@android:color/white"
+        android:id="@+id/Layout_green">
+
+        <LinearLayout
+            android:layout_width="30dip"
+            android:layout_height="35dip"
+            android:gravity="center"
+            android:clickable="false"
+            android:elevation="5dip"
+            android:background="@color/primary_green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green"
+            android:gravity="center"
+            android:clickable="false"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:padding="8dip"
+            android:layout_marginLeft="10dip"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:padding="10dip"
+        android:layout_below="@id/Layout_green"
+        android:background="@android:color/white"
+        android:id="@+id/Layout_purple">
+
+        <LinearLayout
+            android:layout_width="30dip"
+            android:layout_height="35dip"
+            android:gravity="center"
+            android:clickable="false"
+            android:elevation="5dip"
+            android:background="@color/primary_purple"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Purple"
+            android:gravity="center"
+            android:clickable="false"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:padding="8dip"
+            android:layout_marginLeft="10dip"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
