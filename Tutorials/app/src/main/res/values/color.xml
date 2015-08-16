@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#52bf90</color>
-    <color name="primarydark">#398564</color>
+    <color name="primary_green">#52bf90</color>
+    <color name="primary_dark_green">#398564</color>
+    <color name="accent_green">#FF4081</color>
     <color name="activity_bg">#e4e5e5</color>
     <color name="second_primary">#e0ac69</color>
     <color name="second_primarydark">#c68642</color>
+
+    <color name="primary_purple">#673AB7</color>
+    <color name="primary_dark_purple">#512DA8</color>
+    <color name="primary_light">#D1C4E9</color>
+    <color name="accent_purple">#FF9800</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="activity_bg_black">#374046</color>
 </resources>

@@ -22,10 +22,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".MainController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/ThemeApp.Green" >
         <activity
             android:name=".activities.Listactivity"
             android:configChanges="orientation"
@@ -140,6 +141,10 @@
         </activity>
 	<activity
             android:name=".samples.ViewPagerDemo"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".samples.ChangeThemeDemo"
             android:label="@string/app_name" >
         </activity>
     </application>

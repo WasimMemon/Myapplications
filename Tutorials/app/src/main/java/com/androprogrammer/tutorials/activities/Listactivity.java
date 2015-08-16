@@ -1,15 +1,17 @@
 package com.androprogrammer.tutorials.activities;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 
+import android.speech.RecognizerIntent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,22 +28,27 @@ import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.customviews.CustomListView;
 import com.androprogrammer.tutorials.samples.AsyncFileReadDemo;
 import com.androprogrammer.tutorials.samples.BatteryLevelDemo;
+import com.androprogrammer.tutorials.samples.ChangeThemeDemo;
 import com.androprogrammer.tutorials.samples.CircularImageViewDemo;
 import com.androprogrammer.tutorials.samples.FrameAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageSwitcherDemo;
 import com.androprogrammer.tutorials.samples.ImageTabViewDemo;
 import com.androprogrammer.tutorials.samples.PushNotificationDemo;
-import com.androprogrammer.tutorials.samples.SetWallpaperDemo;
 import com.androprogrammer.tutorials.samples.SystemSettingDemo;
 import com.androprogrammer.tutorials.samples.TabViewDemo;
 import com.androprogrammer.tutorials.samples.TakePictureDemo;
 import com.androprogrammer.tutorials.samples.TrackUserDemo;
 import com.androprogrammer.tutorials.samples.VideoPlayerDemo;
+import com.androprogrammer.tutorials.samples.ViewPagerDemo;
+import com.androprogrammer.tutorials.samples.VoiceInputDemo;
+import com.androprogrammer.tutorials.services.DeviceAdminReciver;
+import com.androprogrammer.tutorials.util.Common;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -53,7 +60,15 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
     protected File image;
     protected ImageButton btShare;
     protected ArrayAdapter<String> adapter = null;
-    private static String TAG = "Listactivity";
+
+    private static final String TAG = "Listactivity";
+    private static final int REQUEST_CODE = 1234;
+
+    private ComponentName mDeviceAdminSample;
+    private SearchView sv;
+    private MenuItem searchItem;
+
+    public static int REQUEST_CODE_ENABLE_ADMIN = 1111;
 
     public static Listactivity listActivity;
     public Map<String,Object> tutorials;
@@ -77,13 +92,10 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
             }
         });
 
-        //Log.d("List", "" + tutorials.size());
-
         String[] keys = tutorials.keySet().toArray(
                 new String[tutorials.keySet().size()]);
 
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, keys);
+        adapter = new ArrayAdapter<String>(this, R.layout.row_mainlist_item,keys);
 
         lv_tutorials.setAdapter(adapter);
 
@@ -118,7 +130,15 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         lv_tutorials.addHeaderView(getLayoutInflater().inflate(R.layout.mainlist_header, null));
 
         btShare = (ImageButton) view.findViewById(R.id.list_bt_share);
+
+        int color = Common.getThemeColor(this,R.attr.colorAccent);
+
+        btShare.getBackground().setColorFilter(color, PorterDuff.Mode.ADD);
         tutorials = new TreeMap<String,Object>();
+
+        mDeviceAdminSample = new ComponentName(this, DeviceAdminReciver.class);
+
+
     }
 
     public static Listactivity getInstance()
@@ -128,7 +148,8 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
 
     private void hideViews()
     {
-        Log.d(TAG,"hideview");
+        //Log.d(TAG, "" + rootLogger.isDebugEnabled());
+        //rootLogger.debug("hideview");
         toolbar.animate().alpha(0).setDuration(300)
                 .translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
 
@@ -140,7 +161,7 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
     }
 
     private void showViews() {
-        Log.d(TAG,"showview");
+        //rootLogger.debug("showview");
         toolbar.animate().alpha(1).setDuration(300).translationY(0).setInterpolator(new DecelerateInterpolator(2));
         btShare.animate().setDuration(300).translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
     }
@@ -154,13 +175,15 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         tutorials.put("Video Player", new Intent(this, VideoPlayerDemo.class));
         tutorials.put("Circular Image View", new Intent(this, CircularImageViewDemo.class));
         tutorials.put("Track User Location", new Intent(this, TrackUserDemo.class));
-	tutorials.put("Crop and Resize Image", new Intent(this, TakePictureDemo.class));
+        tutorials.put("Crop and Resize Image", new Intent(this, TakePictureDemo.class));
         tutorials.put("Image Grid View", new Intent(this, ImageAnimationDemo.class));
         tutorials.put("Image Switcher", new Intent(this, ImageSwitcherDemo.class));
         tutorials.put("Tabs with Toolbar", new Intent(this, TabViewDemo.class));
         tutorials.put("Icon Tabs with Toolbar", new Intent(this, ImageTabViewDemo.class));
         tutorials.put("Push Notification", new Intent(this, PushNotificationDemo.class));
-        tutorials.put("Change Wallpaper", new Intent(this, SetWallpaperDemo.class));
+        tutorials.put("View pager with circular indicator", new Intent(this, ViewPagerDemo.class));
+        tutorials.put("Voice input using Google", new Intent(this, VoiceInputDemo.class));
+        tutorials.put("Change Theme", new Intent(this, ChangeThemeDemo.class));
     }
 
     private void captureScreen(){
@@ -189,8 +212,8 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_list, menu);
 
-        MenuItem item = menu.findItem(R.id.search);
-        SearchView sv = (SearchView) MenuItemCompat.getActionView(item);
+        searchItem = menu.findItem(R.id.search);
+        sv = (SearchView) MenuItemCompat.getActionView(searchItem);
         sv.setOnQueryTextListener(this);
 
         return true;
@@ -207,8 +230,6 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
 
             case R.id.action_settings :
                 break;
-
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -248,5 +269,45 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
     @Override
     public void onShow() {
         showViews();
+    }
+
+    /**
+     * Fire an intent to start the voice recognition activity.
+     */
+    private void startVoiceRecognitionActivity() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak the word");
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //If Voice recognition is successful then it returns RESULT_OK
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<String> textMatchList = data
+                        .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                if (!textMatchList.isEmpty()) {
+                    String Query = textMatchList.get(0);
+                    if (searchItem != null)
+                    {
+                        searchItem.expandActionView();
+                        sv.setQuery(Query,true);
+                    }
+                    //word.setText(searchQuery);
+                }
+                //Result code for various error.
+            } else if (resultCode == RecognizerIntent.RESULT_NETWORK_ERROR) {
+                Common.showToast(this,"Network Error");
+            } else if (resultCode == RecognizerIntent.RESULT_NO_MATCH) {
+                Common.showToast(this, "No Match");
+            } else if (resultCode == RecognizerIntent.RESULT_SERVER_ERROR) {
+                Common.showToast(this, "Server Error");
+            }
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
