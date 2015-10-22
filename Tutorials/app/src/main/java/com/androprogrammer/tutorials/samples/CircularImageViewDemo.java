@@ -16,9 +16,13 @@ public class CircularImageViewDemo extends Baseactivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //int a = 0, b = 5;
+        //float c = b/a;
+
         setReference();
 
-        setToolbarElevation(7);
+        setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

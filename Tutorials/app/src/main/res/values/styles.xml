@@ -9,6 +9,7 @@
         <item name="android:windowBackground">@color/activity_bg</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
         <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
         <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
     </style>
@@ -21,6 +22,7 @@
         <item name="android:windowBackground">@color/activity_bg_black</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
         <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
         <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
     </style>
@@ -33,6 +35,7 @@
         <item name="android:windowBackground">@color/activity_bg</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
         <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
         <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
     </style>
@@ -45,14 +48,18 @@
         <item name="android:windowBackground">@color/activity_bg_black</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
         <!--<item name="searchViewStyle">@style/CustomSearchViewStyle</item>-->
         <!--<item name="popupMenuStyle">@style/popupMenuStyle</item>-->
     </style>
 
     <!-- Base application themes. -->
     <style name="ThemeApp.Green" parent="AppTheme.Base.Green"/>
+
     <style name="ThemeApp.Green.Dark" parent="AppTheme.Base.Green.Dark"/>
+
     <style name="ThemeApp.Purple" parent="AppTheme.Base.Purple"/>
+
     <style name="ThemeApp.Purple.Dark" parent="AppTheme.Base.Purple.Dark"/>
 
     <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
@@ -91,5 +98,9 @@
     <style name="popupMenuStyle" parent="@android:style/Widget.PopupMenu">
         <item name="android:popupBackground">@android:color/white</item>
     </style>
+
+    <style name="ThemeApp.Green.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="ThemeApp.Green.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

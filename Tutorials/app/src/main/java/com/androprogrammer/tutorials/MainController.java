@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-
+import android.support.multidex.MultiDex;
 
 
 /**
@@ -28,6 +28,7 @@ public class MainController extends Application {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         sharedPreferencesEditor = sharedPreferences.edit();
         setContext(getApplicationContext());
+        MultiDex.install(this);
     }
 
     public static Context getContext() {
@@ -36,14 +37,6 @@ public class MainController extends Application {
 
     public static void setContext(Context mctx) {
         mContext = mctx;
-    }
-
-    public static boolean isConnectivityAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
     public static MainController getAppInstance() {

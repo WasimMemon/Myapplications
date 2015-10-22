@@ -5,7 +5,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.transition.Transition;
@@ -21,6 +21,8 @@ import com.androprogrammer.tutorials.customviews.SlidingTabLayout;
 import com.androprogrammer.tutorials.fragments.FragmentOne;
 import com.androprogrammer.tutorials.fragments.FragmentThree;
 import com.androprogrammer.tutorials.fragments.FragmentTwo;
+import com.androprogrammer.tutorials.fragments.RecyclerViewFragment;
+import com.androprogrammer.tutorials.util.Common;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,7 @@ public class TabViewDemo extends Baseactivity implements ActionBar.TabListener {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+       /* if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
             getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
             //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
@@ -48,9 +50,12 @@ public class TabViewDemo extends Baseactivity implements ActionBar.TabListener {
 
 
             //getWindow().setNavigationBarColor(getResources().getColor(R.color.second_primary));
-        }
+        }*/
 
         super.onCreate(savedInstanceState);
+
+        //opening transition animations
+        overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_scale);
 
         setReference();
 
@@ -60,17 +65,19 @@ public class TabViewDemo extends Baseactivity implements ActionBar.TabListener {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        fragments.add(new FragmentOne());
+        fragments.add(new RecyclerViewFragment());
         fragments.add(new FragmentTwo());
         fragments.add(new FragmentThree());
 
         String[] titles = {"One", "Two", "Three"};
 
-        mAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragments, titles);
+        mAdapter = new TabFragmentAdapter(getFragmentManager(), fragments, titles);
 
         mPager.setAdapter(mAdapter);
 
-        tabs_header.setBackgroundColor(getResources().getColor(R.color.primary));
+        int color = Common.getThemeColor(this, R.attr.colorPrimary);
+
+        tabs_header.setBackgroundColor(color);
         tabs_header.setTitleColor(Color.WHITE);
         tabs_header.setFittingChildren(true);
         tabs_header.setTabType(SlidingTabLayout.TabType.TEXT);
@@ -87,6 +94,14 @@ public class TabViewDemo extends Baseactivity implements ActionBar.TabListener {
         fragments = new ArrayList<Fragment>();
 
         SetTabSelector();
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        //closing transition animations
+        overridePendingTransition(R.anim.activity_open_scale,R.anim.activity_close_translate);
     }
 
     @Override

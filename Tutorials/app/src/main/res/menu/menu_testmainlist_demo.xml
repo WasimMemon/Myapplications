@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.androprogrammer.tutorials.samples.AppsListviewDemo">
+
+    <item android:id="@+id/action_search"
+        android:title="@string/abc_search_hint"
+        android:icon="@android:drawable/ic_menu_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"/>
+
+
+    <item
+        android:id="@+id/menu_list_style"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="Grid layout"
+        app:showAsAction="always" />
+</menu>

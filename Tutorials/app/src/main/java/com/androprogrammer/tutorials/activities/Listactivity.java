@@ -26,18 +26,23 @@ import android.widget.ListView;
 
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.customviews.CustomListView;
+import com.androprogrammer.tutorials.samples.AppsListviewDemo;
 import com.androprogrammer.tutorials.samples.AsyncFileReadDemo;
 import com.androprogrammer.tutorials.samples.BatteryLevelDemo;
 import com.androprogrammer.tutorials.samples.ChangeThemeDemo;
 import com.androprogrammer.tutorials.samples.CircularImageViewDemo;
+import com.androprogrammer.tutorials.samples.DataCachingDemo;
+import com.androprogrammer.tutorials.samples.FragmentAnimationDemo;
 import com.androprogrammer.tutorials.samples.FrameAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageAnimationDemo;
 import com.androprogrammer.tutorials.samples.ImageSwitcherDemo;
 import com.androprogrammer.tutorials.samples.ImageTabViewDemo;
 import com.androprogrammer.tutorials.samples.PushNotificationDemo;
+import com.androprogrammer.tutorials.samples.StackViewDemo;
 import com.androprogrammer.tutorials.samples.SystemSettingDemo;
 import com.androprogrammer.tutorials.samples.TabViewDemo;
 import com.androprogrammer.tutorials.samples.TakePictureDemo;
+import com.androprogrammer.tutorials.samples.Test_Mainlist;
 import com.androprogrammer.tutorials.samples.TrackUserDemo;
 import com.androprogrammer.tutorials.samples.VideoPlayerDemo;
 import com.androprogrammer.tutorials.samples.ViewPagerDemo;
@@ -73,6 +78,12 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
     public static Listactivity listActivity;
     public Map<String,Object> tutorials;
 
+    //private Logger rootLogger;
+
+    //ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger)
+           // LoggerFactory.getLogger(this.getClass().getSimpleName());
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +91,9 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         setReference();
 
         setToolbarElevation(7);
+
+
+        //rootLogger.setLevel(Level.ALL);
 
         //toolbar.setLogo(R.mipmap.ic_launcher);
 
@@ -92,10 +106,20 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
             }
         });
 
+        //Log.d("List", "" + tutorials.size());
+
+        // Launch the activity to have the user enable our admin.
+        /*Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdminSample);
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                getResources().getString(R.string.admin_receiver_status_disable_warning));
+        startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);*/
+
+
         String[] keys = tutorials.keySet().toArray(
                 new String[tutorials.keySet().size()]);
 
-        adapter = new ArrayAdapter<String>(this, R.layout.row_mainlist_item,keys);
+        adapter = new ArrayAdapter<String>(this,R.layout.row_mainlist_item,R.id.row_tutorial_title,keys);
 
         lv_tutorials.setAdapter(adapter);
 
@@ -112,6 +136,7 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
                 sharingIntent.putExtra(Intent.EXTRA_TITLE, getApplicationInfo().name);
                 sharingIntent.putExtra(android.content.Intent.EXTRA_STREAM, Uri.fromFile(image));
                 startActivity(Intent.createChooser(sharingIntent, "Share App using"));
+                //startVoiceRecognitionActivity();
 
             }
         });
@@ -136,8 +161,9 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         btShare.getBackground().setColorFilter(color, PorterDuff.Mode.ADD);
         tutorials = new TreeMap<String,Object>();
 
-        mDeviceAdminSample = new ComponentName(this, DeviceAdminReciver.class);
+        //rootLogger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
+        mDeviceAdminSample = new ComponentName(this, DeviceAdminReciver.class);
 
     }
 
@@ -184,6 +210,10 @@ public class Listactivity extends Baseactivity implements ListView.OnItemClickLi
         tutorials.put("View pager with circular indicator", new Intent(this, ViewPagerDemo.class));
         tutorials.put("Voice input using Google", new Intent(this, VoiceInputDemo.class));
         tutorials.put("Change Theme", new Intent(this, ChangeThemeDemo.class));
+        tutorials.put("Tutorial Recycler View", new Intent(this, Test_Mainlist.class));
+        tutorials.put("Fragment Animation", new Intent(this, FragmentAnimationDemo.class));
+        tutorials.put("Stack view ", new Intent(this, StackViewDemo.class));
+        tutorials.put("Data Caching ", new Intent(this, DataCachingDemo.class));
     }
 
     private void captureScreen(){

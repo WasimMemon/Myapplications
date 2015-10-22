@@ -1,13 +1,10 @@
 <resources>
     <string name="app_name">Tutorials</string>
-    <string name="title_activity_base">BaseActivity</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <!-- Titles string -->
+    <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_circular_image_view_demo">CircularImageViewDemo</string>
     <string name="title_activity_list">ListActivity</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
     <string name="title_activity_video_player_demo">VideoPlayerDemo</string>
     <string name="title_activity_battery_level_demo">BatteryLevelDemo</string>
     <string name="title_activity_async_file_read_demo">AsyncFileReadDemo</string>
@@ -21,12 +18,39 @@
     <string name="title_activity_tab_view_demo">TabViewDemo</string>
     <string name="title_activity_push_notification_demo">PushNotificationDemo</string>
     <string name="title_activity_apps_listview_demo">AppsListviewDemo</string>
+    <string name="title_activity_view_pager_demo">ViewPagerDemo</string>
+    <string name="title_activity_voice_input_demo">VoiceInputDemo</string>
+    <string name="title_activity_change_theme_demo">ChangeThemeDemo</string>
+    <string name="title_activity_fragment_animation_demo">FragmentAnimationDemo</string>
+    <string name="title_activity_stack_view_demo">StackViewDemo</string>
+    <string name="title_activity_data_caching_demo">DataCachingDemo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Menu string -->
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Widget string -->
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+    <!-- fragments -->
+    <string name="element_text">Element</string>
+    <string name="grid_layout_manager">Grid Layout</string>
+    <string name="linear_layout_manager">ListLayout</string>
+
+
+    <!--Admin Permission Test-->
     <string name="admin_receiver_status_enabled">Admin Permission Enable</string>
     <string name="admin_receiver_status">Receiver status</string>
     <string name="admin_receiver_status_disable_warning">Allows the holder to add or remove active device administrators. Should never be needed for normal apps.</string>
     <string name="admin_receiver_status_disabled">Admin Permission denied.</string>
     <string name="admin_receiver_status_pw_changed">Password changed by user</string>
-    <string name="title_activity_view_pager_demo">ViewPagerDemo</string>
-    <string name="title_activity_voice_input_demo">VoiceInputDemo</string>
-    <string name="title_activity_change_theme_demo">ChangeThemeDemo</string>
+
+    <!--Message-->
+    <string name="msg_wait">Please wait...</string>
+    <string name="msg_noInternet">No Internet Connection Found...</string>
+
 </resources>

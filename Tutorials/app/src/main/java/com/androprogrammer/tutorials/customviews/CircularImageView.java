@@ -1,11 +1,13 @@
 package com.androprogrammer.tutorials.customviews;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -14,6 +16,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -25,17 +28,22 @@ import com.androprogrammer.tutorials.R;
 public class CircularImageView extends ImageView {
     public CircularImageView(Context context) {
         super(context);
-        setup();
+        //setup();
     }
 
     public CircularImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setup();
+        //setup();
     }
 
     public CircularImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setup();
+        //setup();
+    }
+
+    @TargetApi(21)
+    public CircularImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
 
@@ -55,7 +63,7 @@ public class CircularImageView extends ImageView {
         paint.setFilterBitmap(true);
         paint.setDither(true);
         //canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(getResources().getColor(R.color.primary));
+        paint.setColor(getResources().getColor(R.color.primary_green));
         canvas.drawCircle(result.getWidth() / 2 + 0.5f, result.getHeight() / 2 + 0.1f,
                 result.getWidth() / 2 + 0.1f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
@@ -84,7 +92,7 @@ public class CircularImageView extends ImageView {
         paint.setFilterBitmap(true);
         paint.setDither(true);
         canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(getResources().getColor(R.color.primary));
+        paint.setColor(getResources().getColor(R.color.primary_green));
         //paint.setStrokeWidth(5);
 
         canvas.drawCircle(sbmp.getWidth() / 2 + 0.1f, sbmp.getHeight() / 2 + 0.1f,
@@ -183,7 +191,7 @@ public class CircularImageView extends ImageView {
     @Override
     public void onDraw(Canvas canvas) {
         //load the bitmap
-        loadBitmap();
+        /*loadBitmap();
 
         // init shader
         if (image != null)
@@ -204,7 +212,27 @@ public class CircularImageView extends ImageView {
             canvas.drawCircle(circleCenter + borderWidth,
                     circleCenter + borderWidth,
                     circleCenter - 4.0f, paint);
+        }*/
+
+        Drawable drawable = getDrawable();
+
+        if (drawable == null) {
+            return;
         }
+
+        if (getWidth() == 0 || getHeight() == 0) {
+            return;
+        }
+        Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+
+        int w = getWidth(), h = getHeight();
+        int radius = w < h ? w : h;
+
+        Bitmap roundBitmap = getCroppedBitmap(bitmap, radius, w, h);
+        // roundBitmap= ImageUtils.setCircularInnerGlow(roundBitmap, 0xFFBAB399,
+        // 4, 1);
+        canvas.drawBitmap(roundBitmap, 0, 0, null);
     }
 
     @Override
@@ -216,6 +244,39 @@ public class CircularImageView extends ImageView {
         viewHeight = height - (borderWidth * 2);
 
         setMeasuredDimension(width, height);
+    }
+
+    public static Bitmap getCroppedBitmap(Bitmap bmp, int radius, int w, int h) {
+        Bitmap sbmp;
+        if (bmp.getWidth() != radius || bmp.getHeight() != radius)
+        {
+            float _w_rate = 1.0f * radius / bmp.getWidth();
+            float _h_rate = 1.0f * radius / bmp.getHeight();
+            float _rate = _w_rate < _h_rate ? _h_rate : _w_rate;
+            sbmp = Bitmap.createScaledBitmap(bmp, (int)(bmp.getWidth() * _rate),
+                    (int)(bmp.getHeight() * _rate), false);
+        }
+        else
+            sbmp = bmp;
+
+        Bitmap output = Bitmap.createBitmap(sbmp.getWidth(), sbmp.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xffa19774;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, sbmp.getWidth(), sbmp.getHeight());
+
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        paint.setDither(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(Color.parseColor("#BAB399"));
+        canvas.drawCircle(w / 2, h / 2, (w < h ? w : h) / 2, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(sbmp, rect, rect, paint);
+
+        return output;
     }
 
     private int measureWidth(int measureSpec) {
@@ -253,6 +314,28 @@ public class CircularImageView extends ImageView {
         }
 
         return result;
+    }
+
+    public static Bitmap getScaledBitmap(Bitmap originalImage)
+    {
+        int width = 250, height = 250;
+        Bitmap background = Bitmap.createBitmap((int) width, (int) height, Bitmap.Config.ARGB_8888);
+
+        float originalWidth = originalImage.getWidth(), originalHeight = originalImage.getHeight();
+
+        Canvas canvas = new Canvas(background);
+        float scale = width/originalWidth;
+        float xTranslation = 0.0f, yTranslation = (height - originalHeight * scale)/2.0f;
+
+        Matrix transformation = new Matrix();
+        transformation.postTranslate(xTranslation, yTranslation);
+        transformation.preScale(scale, scale);
+
+        Paint paint = new Paint();
+        paint.setFilterBitmap(true);
+        canvas.drawBitmap(originalImage, transformation, paint);
+
+        return background;
     }
 
 }
