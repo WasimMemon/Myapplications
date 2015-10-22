@@ -4,6 +4,8 @@
     <dimen name="activity_vertical_margin">5dp</dimen>
     <dimen name="circularImage_width">100dp</dimen>
     <dimen name="circularImage_height">100dp</dimen>
+    <dimen name="fab_margins">16dp</dimen>
+    <dimen name="card_insets">1dp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information
@@ -14,4 +16,13 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="padding_normal">10dp</dimen>
     <dimen name="padding_high">20dp</dimen>
     <dimen name="margin_small">1dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="stackview_image_width">100dp</dimen>
+    <dimen name="stackview_image_height">200dp</dimen>
+
+    <dimen name="elevation_normal">8dip</dimen>
+    <dimen name="elevation_high">12dip</dimen>
+
+    <dimen name="griditem_padding">1dip</dimen>
 </resources>

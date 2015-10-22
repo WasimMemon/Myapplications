@@ -75,7 +75,7 @@ public class ImageAnimationDemo extends Baseactivity implements GridView.OnItemC
             toolbar.setBackgroundColor(getResources().getColor(R.color.second_primary));
         }
 
-        setToolbarElevation(7);
+        setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         setToolbarSubTittle(this.getClass().getSimpleName());
 

@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.activities.Baseactivity;
+import com.androprogrammer.tutorials.util.Common;
+import com.androprogrammer.tutorials.util.ExceptionHandler;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,9 +50,15 @@ public class AsyncFileReadDemo extends Baseactivity {
         }
 
         super.onCreate(savedInstanceState);
+
+        //Common.showToast(this, ExceptionHandler.getInstance(this).getString());
+
+        /*int a = 0, b = 3;
+        float c = b/a;*/
+
         setReference();
 
-        setToolbarElevation(7);
+        setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         setToolbarSubTittle(this.getClass().getSimpleName());
 
@@ -69,7 +77,6 @@ public class AsyncFileReadDemo extends Baseactivity {
                         Toast.LENGTH_LONG).show();
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -107,9 +114,6 @@ public class AsyncFileReadDemo extends Baseactivity {
                 // NavUtils.navigateUpFromSameTask(this);
                 // return true;
                 break;
-            case R.id.action_settings:
-                // return true;
-                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -132,7 +136,7 @@ public class AsyncFileReadDemo extends Baseactivity {
             FileWriter writer = null;
             try {
                 writer = new FileWriter(f,true);
-                writer.append(str[0].toString());
+                writer.append(str[0]);
                 writer.append(enter);
                 writer.flush();
 

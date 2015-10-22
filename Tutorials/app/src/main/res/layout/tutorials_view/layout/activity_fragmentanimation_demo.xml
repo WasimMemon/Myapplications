@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
+    android:orientation="vertical"
+    tools:context="com.androprogrammer.tutorials.samples.FragmentAnimationDemo">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Demonstration of hiding and showing fragments."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/layout_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@id/tv_header"
+        android:layout_marginTop="5dp"
+        android:background="@color/primary_green"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="4dip">
+
+        <Button
+            android:id="@+id/frag1hide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hide" />
+
+        <fragment
+            android:id="@+id/fragment1"
+            android:name="com.androprogrammer.tutorials.fragments.FragmentOne"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/layout_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:background="@color/primary_purple"
+        android:orientation="vertical"
+        android:padding="4dip">
+
+        <Button
+            android:id="@+id/frag2hide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hide" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.androprogrammer.tutorials.fragments.FragmentTwo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -33,8 +33,5 @@ public class WearListCallListenerService extends WearableListenerService {
             startActivity(new Intent((Intent) Listactivity.getInstance().tutorials.get(message[1]))
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
-
-
-
     }
 }

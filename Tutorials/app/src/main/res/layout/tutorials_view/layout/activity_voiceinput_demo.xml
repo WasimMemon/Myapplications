@@ -12,6 +12,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+
         android:background="@android:drawable/dialog_holo_light_frame"
         android:padding="9dp">
 
@@ -39,5 +40,13 @@
             android:layout_gravity="right|center_vertical"
             android:src="@android:drawable/ic_btn_speak_now"/>
     </LinearLayout>
+
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/address_looking_up"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
 
 </RelativeLayout>

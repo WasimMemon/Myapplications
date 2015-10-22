@@ -17,6 +17,7 @@ import android.widget.EditText;
 
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.activities.Baseactivity;
+import com.androprogrammer.tutorials.customviews.CircularImageView;
 
 public class PushNotificationDemo extends Baseactivity implements View.OnClickListener {
 
@@ -44,7 +45,7 @@ public class PushNotificationDemo extends Baseactivity implements View.OnClickLi
 
         setToolbarSubTittle(this.getClass().getSimpleName());
 
-        setToolbarElevation(7);
+        setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -84,8 +85,8 @@ public class PushNotificationDemo extends Baseactivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), PushNotificationDemo.class);
-        final PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+        Intent intent = new Intent(PushNotificationDemo.this, CircularImageViewDemo.class);
+        final PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
 
         NotificationManager notificationManager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);

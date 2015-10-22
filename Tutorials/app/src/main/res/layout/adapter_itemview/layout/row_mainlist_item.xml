@@ -1,7 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:descendantFocusability="blocksDescendants">-->
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/row_tutorial_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:background="@android:color/white"
-    android:padding="10dip"/>
+    android:focusable="false"
+    android:gravity="center_vertical"
+    android:minHeight="?android:listPreferredItemHeightSmall"
+    android:padding="@dimen/padding_normal"
+    android:text="@string/hello_world"
+    android:textAppearance="?android:textAppearanceMedium"
+    android:textColor="?android:textColorPrimary" />
+
+    <!--</LinearLayout>-->

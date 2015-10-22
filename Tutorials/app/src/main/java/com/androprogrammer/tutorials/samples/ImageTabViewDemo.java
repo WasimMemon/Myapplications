@@ -5,7 +5,7 @@ import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.view.LayoutInflater;
@@ -19,6 +19,7 @@ import com.androprogrammer.tutorials.customviews.SlidingTabLayout;
 import com.androprogrammer.tutorials.fragments.FragmentOne;
 import com.androprogrammer.tutorials.fragments.FragmentThree;
 import com.androprogrammer.tutorials.fragments.FragmentTwo;
+import com.androprogrammer.tutorials.util.Common;
 
 import java.util.ArrayList;
 
@@ -64,13 +65,15 @@ public class ImageTabViewDemo extends Baseactivity implements ActionBar.TabListe
 
         String[] titles = {"one", "two", "three"};
 
-        mAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragments, titles);
+        mAdapter = new TabFragmentAdapter(getFragmentManager(), fragments, titles);
 
         mPager.setAdapter(mAdapter);
 
-        tabs_header.setBackgroundColor(getResources().getColor(R.color.primary));
+        int color = Common.getThemeColor(this, R.attr.colorPrimary);
+
+        tabs_header.setBackgroundColor(color);
         tabs_header.setTitleColor(Color.WHITE);
-        //tabs_header.setFittingChildren(true);
+        tabs_header.setFittingChildren(true);
         tabs_header.setTabType(SlidingTabLayout.TabType.ICON);
         tabs_header.setViewPager(mPager);
     }

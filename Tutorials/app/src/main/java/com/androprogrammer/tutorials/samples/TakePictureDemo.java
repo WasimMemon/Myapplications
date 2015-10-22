@@ -1,6 +1,7 @@
 package com.androprogrammer.tutorials.samples;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,7 +26,7 @@ import java.io.File;
 public class TakePictureDemo extends Baseactivity {
 
     protected View view;
-    protected ImageView imgViewCamera;
+    protected ImageView imgViewCamera, img_compressed;
     protected int LOAD_IMAGE_CAMERA = 0, CROP_IMAGE = 1, LOAD_IMAGE_GALLARY = 2;
     private Uri picUri;
     private File pic;
@@ -35,7 +37,7 @@ public class TakePictureDemo extends Baseactivity {
 
         setReference();
 
-        setToolbarElevation(7);
+        setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         setToolbarSubTittle(this.getClass().getSimpleName());
 
@@ -47,6 +49,7 @@ public class TakePictureDemo extends Baseactivity {
     public void setReference() {
         view = LayoutInflater.from(this).inflate(R.layout.activity_takepicture_demo, container);
         imgViewCamera = (ImageView) view.findViewById(R.id.img_camera);
+        img_compressed = (ImageView) view.findViewById(R.id.img_compress);
 
     }
 
@@ -94,17 +97,38 @@ public class TakePictureDemo extends Baseactivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == LOAD_IMAGE_CAMERA && resultCode == RESULT_OK) {
+            //if (data != null) {
+                /*picUri = data.getData();
+
+                if (picUri != null)
+                    CropImage();*/
+
+               /* Bundle extras = data.getExtras();
+                Log.d("onActivityResult", "Inside on activity for result");
+                Bitmap photo = (Bitmap) extras.get("data");
+                //imgViewCamera.setImageBitmap(photo);
+                picUri = getImageUri(this, photo);*/
                 CropImage();
+
+            //}
 
         }
         else if (requestCode == LOAD_IMAGE_GALLARY) {
             if (data != null) {
 
-                // get the returned data
                 picUri = data.getData();
                 CropImage();
+                // get the returned data
+               /* Bundle extras = data.getExtras();
+
+                if (extras != null) {
+                    Bitmap photo = extras.getParcelable("data");
+                    picUri = getImageUri(this, photo);
+                    CropImage();
+                }*/
             }
         }
+
         else if (requestCode == CROP_IMAGE) {
             if (data != null) {
                 // get the returned data
@@ -113,7 +137,8 @@ public class TakePictureDemo extends Baseactivity {
                 // get the cropped bitmap
                 Bitmap photo = extras.getParcelable("data");
 
-                imgViewCamera.setImageBitmap(CompressResizeImage(photo));
+                imgViewCamera.setImageBitmap(photo);
+                img_compressed.setImageBitmap(CompressResizeImage(photo));
 
                 if (pic != null)
                 {
@@ -132,6 +157,7 @@ public class TakePictureDemo extends Baseactivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             finish();
             return true;
@@ -152,12 +178,23 @@ public class TakePictureDemo extends Baseactivity {
             intent.putExtra("aspectY", 4);
             intent.putExtra("scaleUpIfNeeded", true);
             intent.putExtra("return-data", true);
+            //intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+            //intent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
 
             startActivityForResult(intent, CROP_IMAGE);
 
         } catch (ActivityNotFoundException e) {
-            Common.showToast(this, "Your device doesn't support the crop action!");
+            String errorMessage = "Your device doesn't support the crop action!";
+            Common.showToast(this, errorMessage);
         }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.PNG, 100, bytes);
+        String path = MediaStore.Images
+                .Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 
     public Bitmap CompressResizeImage(Bitmap bm)
@@ -177,6 +214,13 @@ public class TakePictureDemo extends Baseactivity {
 
         Bitmap bm1 = BitmapFactory.decodeByteArray(b, 0, b.length);
 
+        /*Bitmap output = Bitmap.createBitmap(ivWidth, ivHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        Matrix m = new Matrix();
+        m.setScale((float)ivWidth / bmWidth, (float)ivHeight/ bmHeight);
+        canvas.drawBitmap(bm, m, new Paint());
+
+        return output;*/
         return bm1;
     }
 }

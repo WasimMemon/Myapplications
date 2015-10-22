@@ -67,7 +67,7 @@ public class TrackUserDemo extends Baseactivity
 
         setReference();
 
-        setToolbarElevation(7);
+        setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
