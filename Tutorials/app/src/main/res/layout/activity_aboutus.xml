@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="@dimen/padding_normal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.androprogrammer.tutorials.activities.AboutusActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--<android.support.v7.widget.CardView
+            android:id="@+id/card_website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="2dp"
+            android:layout_margin="8dp"
+            app:cardElevation="@dimen/elevation_normal">-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_header"
+                    android:weightSum="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:cropToPadding="true"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/ic_launcher"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.7"
+                        android:padding="@dimen/padding_small"
+                        android:text="@string/app_name"
+                        android:textAppearance="?android:textAppearanceLarge"
+                        android:textColor="?android:textColorPrimary"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_small"
+                        android:text="@string/app_description"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="?android:textColorPrimary"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/icon_web"
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="5dp"
+                        android:src="@mipmap/ic_action_web"
+                        tools:tint="?colorAccent"
+                        tools:tintMode="add"/>
+
+                    <!--<LinearLayout
+                        android:id="@+id/layout_website"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.49"
+                        android:background="#edede1"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:text="Web site"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="?android:textColorPrimary"/>
+
+                    </LinearLayout>-->
+
+
+                    <ImageView
+                        android:id="@+id/icon_source"
+                        android:layout_width="40dip"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="5dp"
+                        android:src="@mipmap/ic_github"
+                        tools:tint="?colorAccent"
+                        tools:tintMode="add"/>
+
+
+<!--
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="0.005"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"/>
+
+                    <LinearLayout
+                        android:id="@+id/layout_code"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.49"
+                        android:background="#edede1"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="View Source"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:textColor="?android:textColorPrimary"/>
+
+                    </LinearLayout>
+-->
+
+                </LinearLayout>
+            </LinearLayout>
+        <!--</android.support.v7.widget.CardView>-->
+    </LinearLayout>
+</ScrollView>
