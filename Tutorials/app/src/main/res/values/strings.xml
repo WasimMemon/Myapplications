@@ -1,5 +1,7 @@
 <resources>
+
     <string name="app_name">Tutorials</string>
+    <string name="app_description">\nThis is live example of all my blog post. it is comprise of many tutorials and android mvc pattern.\n\nAll listed tutorials made by me. some of the code taken from open source application but not all.\n\nIf you find this application helpful please help us by sharing it.\n </string>
 
     <!-- Titles string -->
     <string name="title_activity_base">BaseActivity</string>
@@ -23,6 +25,7 @@
     <string name="title_activity_change_theme_demo">ChangeThemeDemo</string>
     <string name="title_activity_fragment_animation_demo">FragmentAnimationDemo</string>
     <string name="title_activity_stack_view_demo">StackViewDemo</string>
+    <string name="title_activity_aboutus">About App</string>
     <string name="title_activity_data_caching_demo">DataCachingDemo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -31,6 +34,7 @@
     <!-- Menu string -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_aboutus">About app</string>
 
     <!-- Widget string -->
     <string name="appwidget_text">EXAMPLE</string>
@@ -52,5 +56,9 @@
     <!--Message-->
     <string name="msg_wait">Please wait...</string>
     <string name="msg_noInternet">No Internet Connection Found...</string>
+    <string name="title_activity_encryption_demo">EncryptionDemo</string>
+    <string name="str_encrypt">Encrypt</string>
+    <string name="str_decrypt">Decrypt</string>
+
 
 </resources>

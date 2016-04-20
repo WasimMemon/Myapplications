@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.androprogrammer.tutorials"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.androprogrammer.tutorials">
 
-    <uses-permission android:name="android.permission.BATTERY_STATS"/>
-    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.BATTERY_STATS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <!-- <uses-permission android:name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/> -->
 
 
     <!-- Required to show current location -->
-    <uses-permission android:name="android.permission.ACCESS_GPS"/>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:name=".MainController"
@@ -40,95 +40,98 @@
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <data android:scheme="myapp"/>
+                <data android:scheme="myapp" />
 
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <!-- IMPORTANT ! DO NOT FORGET THIS META-DATA !!! -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBMCJVucpe__mcJVvKZac73vzB9NphAuzM"/>
+            android:value="Your Key" />
 
         <uses-feature
             android:glEsVersion="0x00020000"
-            android:required="true"/>
+            android:required="true" />
 
         <activity
             android:name=".samples.CircularImageViewDemo"
             android:exported="true"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
 
         <receiver android:name=".widget.AppWidget">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_info"/>
+                android:resource="@xml/app_widget_info" />
         </receiver>
 
         <activity
             android:name=".samples.VideoPlayerDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.BatteryLevelDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.AsyncFileReadDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.FrameAnimationDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.SystemSettingDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.TrackUserDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.TakePictureDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
 
-        <service android:name=".services.GetUserLocation"/>
+        <service android:name=".services.GetUserLocation" />
         <service android:name=".services.WearListCallListenerService">
             <intent-filter>
-                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"/>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
         </service>
 
         <activity
             android:name=".samples.ImageAnimationDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.ImageAnimationDetail"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.ImageSwitcherDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.TabViewDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.ImageTabViewDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
         <activity
             android:name=".samples.PushNotificationDemo"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
+        <activity
+            android:name=".samples.AppsListviewDemo"
+            android:label="@string/app_name" />
+
         <receiver
             android:name=".services.DeviceAdminReciver"
             android:description="@string/admin_receiver_status_disable_warning"
@@ -136,41 +139,40 @@
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
-                android:resource="@xml/device_admin_sample"/>
+                android:resource="@xml/device_admin_sample" />
 
             <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
 
         <activity
             android:name=".samples.ViewPagerDemo"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
         <activity
             android:name=".samples.VoiceInputDemo"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
         <activity
             android:name=".samples.ChangeThemeDemo"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
         <activity
             android:name=".samples.FragmentAnimationDemo"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
         <activity
             android:name=".samples.Test_Mainlist"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
         <activity
             android:name=".samples.StackViewDemo"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
         <activity
             android:name=".samples.DataCachingDemo"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"/>
+        <activity
+            android:name=".activities.AboutusActivity"
+            android:label="@string/app_name"/>
+        <activity
+            android:name=".samples.EncryptionDemo"
+            android:label="@string/app_name"/>
     </application>
 
 </manifest>

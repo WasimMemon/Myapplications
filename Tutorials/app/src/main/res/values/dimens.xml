@@ -15,8 +15,16 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="padding_small">5dp</dimen>
     <dimen name="padding_normal">10dp</dimen>
     <dimen name="padding_high">20dp</dimen>
-    <dimen name="margin_small">1dp</dimen>
+    <dimen name="margin_1dp">1dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="textsize_small">12sp</dimen>
+    <dimen name="textsize_medium">15sp</dimen>
+    <dimen name="textsize_big">24sp</dimen>
+
+    <dimen name="toolbar_image">200dip</dimen>
 
     <dimen name="stackview_image_width">100dp</dimen>
     <dimen name="stackview_image_height">200dp</dimen>

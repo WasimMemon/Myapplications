@@ -54,13 +54,13 @@
     </style>
 
     <!-- Base application themes. -->
-    <style name="ThemeApp.Green" parent="AppTheme.Base.Green"/>
+    <style name="ThemeApp.Green" parent="AppTheme.Base.Green" />
 
-    <style name="ThemeApp.Green.Dark" parent="AppTheme.Base.Green.Dark"/>
+    <style name="ThemeApp.Green.Dark" parent="AppTheme.Base.Green.Dark" />
 
-    <style name="ThemeApp.Purple" parent="AppTheme.Base.Purple"/>
+    <style name="ThemeApp.Purple" parent="AppTheme.Base.Purple" />
 
-    <style name="ThemeApp.Purple.Dark" parent="AppTheme.Base.Purple.Dark"/>
+    <style name="ThemeApp.Purple.Dark" parent="AppTheme.Base.Purple.Dark" />
 
     <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
         <!-- Used to for the title of the Toolbar -->
@@ -86,6 +86,16 @@
 
     </style>
 
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/textsize_big</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="MyTitledActivityDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTitleBackgroundStyle">@android:color/transparent</item>
@@ -99,8 +109,8 @@
         <item name="android:popupBackground">@android:color/white</item>
     </style>
 
-    <style name="ThemeApp.Green.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="ThemeApp.Green.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="ThemeApp.Green.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="ThemeApp.Green.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
