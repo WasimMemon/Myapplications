@@ -16,4 +16,11 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
     <color name="activity_bg_black">#374046</color>
+
+    <color name="color_skype1">#00AFF0</color>
+    <color name="color_whatsApp">#25D366</color>
+    <color name="color_vimeo">#1ab7ea</color>
+    <color name="color_blogger">#f57d00</color>
+    <color name="color_gPlus">#dd4b39</color>
+
 </resources>

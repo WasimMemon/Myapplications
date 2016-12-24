@@ -144,6 +144,8 @@
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
+
+
         </receiver>
 
         <activity
@@ -172,6 +174,10 @@
             android:label="@string/app_name"/>
         <activity
             android:name=".samples.EncryptionDemo"
+            android:label="@string/app_name"/>
+
+        <activity
+            android:name=".samples.BottomBarDemo"
             android:label="@string/app_name"/>
     </application>
 

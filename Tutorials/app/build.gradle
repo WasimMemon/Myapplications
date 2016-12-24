@@ -1,15 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
 
     defaultConfig {
         applicationId "com.androprogrammer.tutorials"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
+        vectorDrawables{
+            useSupportLibrary = true
+        }
     }
     sourceSets{
         main{
@@ -31,28 +35,51 @@ android {
             debuggable true
         }
     }
+    dexOptions{
+        preDexLibraries true
+        javaMaxHeapSize "2g"
+    }
+    lintOptions {
+        abortOnError false
+        absolutePaths false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+        incremental false
+    }
 }
 
 ext {
-    supportLibVersion = '23.1.1'
-    playServiceLibVersion = '8.4.0'
+    supportLibVersion = '25.0.1'
+    playServiceLibVersion = '9.8.0'
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     wearApp project(':wear')
-    compile "com.android.support:support-v4:${supportLibVersion}"
-    compile "com.android.support:support-v13:${supportLibVersion}"
-    compile "com.android.support:appcompat-v7:${supportLibVersion}"
-    compile "com.android.support:design:${supportLibVersion}"
-    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
-    compile "com.android.support:cardview-v7:${supportLibVersion}"
-    compile "com.google.android.gms:play-services-maps:${playServiceLibVersion}"
-    compile "com.google.android.gms:play-services-location:${playServiceLibVersion}"
-    compile "com.google.android.gms:play-services-wearable:${playServiceLibVersion}"
+
+    // For app compatibility
+    compile "com.android.support:support-v4:${supportLibVersion}",
+        "com.android.support:support-v13:${supportLibVersion}",
+        "com.android.support:appcompat-v7:${supportLibVersion}",
+        "com.android.support:design:${supportLibVersion}",
+        "com.android.support:recyclerview-v7:${supportLibVersion}",
+        "com.android.support:cardview-v7:${supportLibVersion}"
+
+    // For google services
+    compile "com.google.android.gms:play-services-maps:${playServiceLibVersion}",
+        "com.google.android.gms:play-services-location:${playServiceLibVersion}",
+        "com.google.android.gms:play-services-wearable:${playServiceLibVersion}"
+
+    // For 65k methods
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.google.code.gson:gson:2.3.1'
+
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.koushikdutta.ion:ion:2.1.6'
     compile 'com.anupcowkur:reservoir:2.1'
     compile 'com.jakewharton:butterknife:7.0.1'
+
+    // For custom radio button
+    compile 'com.github.worker8:RadioGroupPlus:v1.0.1'
 }

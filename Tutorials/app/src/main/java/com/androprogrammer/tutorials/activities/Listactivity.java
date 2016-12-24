@@ -30,6 +30,7 @@ import com.androprogrammer.tutorials.listners.RecyclerItemClickListener;
 import com.androprogrammer.tutorials.samples.AppsListviewDemo;
 import com.androprogrammer.tutorials.samples.AsyncFileReadDemo;
 import com.androprogrammer.tutorials.samples.BatteryLevelDemo;
+import com.androprogrammer.tutorials.samples.BottomBarDemo;
 import com.androprogrammer.tutorials.samples.ChangeThemeDemo;
 import com.androprogrammer.tutorials.samples.CircularImageViewDemo;
 import com.androprogrammer.tutorials.samples.DataCachingDemo;
@@ -278,11 +279,12 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
         tutorials.put("View pager with circular indicator", new Intent(this, ViewPagerDemo.class));
         tutorials.put("Voice input using Google", new Intent(this, VoiceInputDemo.class));
         tutorials.put("Change Theme", new Intent(this, ChangeThemeDemo.class));
-        tutorials.put("Tutorial Recycler View", new Intent(this, Test_Mainlist.class));
+        //tutorials.put("Tutorial Recycler View", new Intent(this, Test_Mainlist.class));
         tutorials.put("Fragment Animation", new Intent(this, FragmentAnimationDemo.class));
         tutorials.put("Stack view ", new Intent(this, StackViewDemo.class));
         tutorials.put("Data Caching ", new Intent(this, DataCachingDemo.class));
         tutorials.put("Data Encryption/Decryption", new Intent(this, EncryptionDemo.class));
+        tutorials.put("Bottom Bar Demo", new Intent(this, BottomBarDemo.class));
     }
 
     private void captureScreen() {
