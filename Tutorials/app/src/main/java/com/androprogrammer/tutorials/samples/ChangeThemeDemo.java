@@ -1,6 +1,5 @@
 package com.androprogrammer.tutorials.samples;
 
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import com.androprogrammer.tutorials.MainController;
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.activities.Baseactivity;
 import com.androprogrammer.tutorials.activities.Listactivity;
+import com.androprogrammer.tutorials.util.UserPreferenceManager;
 
 
 /**
@@ -30,6 +30,9 @@ public class ChangeThemeDemo extends Baseactivity implements View.OnClickListene
     private LinearLayout layout_green, layout_purple;
     private SwitchCompat switch_dark;
     private boolean isDarkTheme;
+
+    private static final String Theme_Current = "AppliedTheme";
+    private static final String Theme_Dark = "DarkTheme";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class ChangeThemeDemo extends Baseactivity implements View.OnClickListene
 
         setReference();
 
+        setSimpleToolbar(true);
         setToolbarElevation(0);
 
         setToolbarSubTittle(this.getClass().getSimpleName());
@@ -70,16 +74,16 @@ public class ChangeThemeDemo extends Baseactivity implements View.OnClickListene
                 if (isChecked)
                 {
                     isDarkTheme = true;
-                    MainController.preferencePutBoolean("DarkTheme", true);
+                    UserPreferenceManager.preferencePutBoolean(Theme_Dark, true);
                 }
                 else {
                     isDarkTheme = false;
-                    MainController.preferencePutBoolean("DarkTheme", false);
+	                UserPreferenceManager.preferencePutBoolean(Theme_Dark, false);
                 }
             }
         });
 
-        if (MainController.preferenceGetBoolean("DarkTheme", false))
+        if (UserPreferenceManager.preferenceGetBoolean(Theme_Dark, false))
         {
             switch_dark.setChecked(true);
         }
@@ -111,9 +115,9 @@ public class ChangeThemeDemo extends Baseactivity implements View.OnClickListene
         {
             case R.id.Layout_green:
                 if (isDarkTheme)
-                    MainController.preferencePutString("AppliedTheme", "Green_Dark");
+	                UserPreferenceManager.preferencePutString(Theme_Current, "Green_Dark");
                 else
-                    MainController.preferencePutString("AppliedTheme", "Green");
+	                UserPreferenceManager.preferencePutString(Theme_Current, "Green");
 
                 TaskStackBuilder.create(this)
                         .addNextIntent(new Intent(this, Listactivity.class))
@@ -124,9 +128,9 @@ public class ChangeThemeDemo extends Baseactivity implements View.OnClickListene
             case R.id.Layout_purple:
 
                 if (isDarkTheme)
-                    MainController.preferencePutString("AppliedTheme", "Purple_Dark");
+	                UserPreferenceManager.preferencePutString(Theme_Current, "Purple_Dark");
                 else
-                    MainController.preferencePutString("AppliedTheme", "Purple");
+	                UserPreferenceManager.preferencePutString(Theme_Current, "Purple");
 
                 TaskStackBuilder.create(this)
                         .addNextIntent(new Intent(this, Listactivity.class))

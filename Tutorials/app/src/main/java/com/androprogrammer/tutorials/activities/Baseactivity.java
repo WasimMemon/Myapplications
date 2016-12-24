@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.androprogrammer.tutorials.MainController;
 import com.androprogrammer.tutorials.R;
+import com.androprogrammer.tutorials.util.UserPreferenceManager;
 import com.anupcowkur.reservoir.Reservoir;
 
 
@@ -23,6 +24,8 @@ public abstract class Baseactivity extends ActionBarActivity {
 	public android.support.v7.widget.Toolbar toolbar;
 	public CoordinatorLayout mainlayout;
 	public AppBarLayout base_toolbarContainer;
+
+	private static final String Theme_Current = "AppliedTheme";
 	//public ExceptionHandler exceptionHandler;
 
 	@Override
@@ -77,14 +80,14 @@ public abstract class Baseactivity extends ActionBarActivity {
 	public abstract void setReference();
 
 	private void setAppTheme() {
-		if (!MainController.preferenceGetString("AppliedTheme", "").equals("")) {
-			if (MainController.preferenceGetString("AppliedTheme", "").equals("Green")) {
+		if (!UserPreferenceManager.preferenceGetString(Theme_Current, "").equals("")) {
+			if (UserPreferenceManager.preferenceGetString(Theme_Current, "").equals("Green")) {
 				setTheme(R.style.ThemeApp_Green);
-			} else if (MainController.preferenceGetString("AppliedTheme", "").equals("Green_Dark")) {
+			} else if (UserPreferenceManager.preferenceGetString(Theme_Current, "").equals("Green_Dark")) {
 				setTheme(R.style.ThemeApp_Green_Dark);
-			} else if (MainController.preferenceGetString("AppliedTheme", "").equals("Purple_Dark")) {
+			} else if (UserPreferenceManager.preferenceGetString(Theme_Current, "").equals("Purple_Dark")) {
 				setTheme(R.style.ThemeApp_Purple_Dark);
-			} else if (MainController.preferenceGetString("AppliedTheme", "").equals("Purple")) {
+			} else if (UserPreferenceManager.preferenceGetString(Theme_Current, "").equals("Purple")) {
 				setTheme(R.style.ThemeApp_Purple);
 			}
 		} else {
