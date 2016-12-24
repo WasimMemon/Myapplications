@@ -60,7 +60,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBMCJVucpe__mcJVvKZac73vzB9NphAuzM" />
+            android:value="Your Key" />
 
         <uses-feature
             android:glEsVersion="0x00020000"
