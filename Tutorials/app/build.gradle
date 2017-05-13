@@ -70,7 +70,8 @@ dependencies {
     // For google services
     compile "com.google.android.gms:play-services-maps:${playServiceLibVersion}",
         "com.google.android.gms:play-services-location:${playServiceLibVersion}",
-        "com.google.android.gms:play-services-wearable:${playServiceLibVersion}"
+        "com.google.android.gms:play-services-wearable:${playServiceLibVersion}",
+        "com.google.android.gms:play-services-vision:${playServiceLibVersion}"
 
     // For 65k methods
     compile 'com.android.support:multidex:1.0.1'

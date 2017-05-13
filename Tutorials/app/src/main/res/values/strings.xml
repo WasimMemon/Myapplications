@@ -65,6 +65,8 @@
     <string name="text_favorites">Favorites</string>
     <string name="text_schedules">Schedules</string>
     <string name="text_music">Music</string>
+    <string name="low_storage_error">Not enough storage space available</string>
+    <string name="permission_camera_rationale">Allow to use camera for scanning purpose</string>
 
 
 </resources>
