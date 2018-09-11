@@ -288,7 +288,6 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
         tutorials.put("Data Encryption/Decryption", new Intent(this, EncryptionDemo.class));
         tutorials.put("Bottom Bar Demo", new Intent(this, BottomBarDemo.class));
         tutorials.put("Barcode scan Demo", new Intent(this, QRCodeScanDemo.class));
-        tutorials.put("Movable Textview Demo", new Intent(this, CustomImageDemo.class));
         tutorials.put("Webview Error Page Demo", new Intent(this, WebViewCustomizationDemo.class));
     }
 
