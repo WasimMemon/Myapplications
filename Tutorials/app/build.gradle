@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion 27
+   // buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "com.androprogrammer.tutorials"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -28,7 +28,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -44,23 +44,21 @@ android {
         absolutePaths false
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
         incremental false
     }
 }
 
 ext {
-    supportLibVersion = '25.0.1'
+    supportLibVersion = '27.1.0'
     playServiceLibVersion = '9.8.0'
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     wearApp project(':wear')
 
     // For app compatibility
-    compile "com.android.support:support-v4:${supportLibVersion}",
+    implementation "com.android.support:support-v4:${supportLibVersion}",
         "com.android.support:support-v13:${supportLibVersion}",
         "com.android.support:appcompat-v7:${supportLibVersion}",
         "com.android.support:design:${supportLibVersion}",
@@ -68,19 +66,21 @@ dependencies {
         "com.android.support:cardview-v7:${supportLibVersion}"
 
     // For google services
-    compile "com.google.android.gms:play-services-maps:${playServiceLibVersion}",
+    implementation "com.google.android.gms:play-services-maps:${playServiceLibVersion}",
         "com.google.android.gms:play-services-location:${playServiceLibVersion}",
         "com.google.android.gms:play-services-wearable:${playServiceLibVersion}",
         "com.google.android.gms:play-services-vision:${playServiceLibVersion}"
 
     // For 65k methods
-    compile 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:multidex:1.0.1'
 
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.koushikdutta.ion:ion:2.1.6'
-    compile 'com.anupcowkur:reservoir:2.1'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.koushikdutta.ion:ion:2.1.6'
+    implementation 'com.anupcowkur:reservoir:2.1'
+
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.jakewharton:butterknife:7.0.1'
 
     // For custom radio button
-    compile 'com.github.worker8:RadioGroupPlus:v1.0.1'
+    implementation 'com.github.worker8:RadioGroupPlus:v1.0.1'
 }

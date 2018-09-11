@@ -29,6 +29,7 @@ import com.androprogrammer.tutorials.adapters.TutorialListAdapter;
 import com.androprogrammer.tutorials.listners.RecyclerItemClickListener;
 import com.androprogrammer.tutorials.samples.AppsListviewDemo;
 import com.androprogrammer.tutorials.samples.AsyncFileReadDemo;
+import com.androprogrammer.tutorials.samples.CustomImageDemo;
 import com.androprogrammer.tutorials.samples.QRCodeScanDemo;
 import com.androprogrammer.tutorials.samples.BatteryLevelDemo;
 import com.androprogrammer.tutorials.samples.BottomBarDemo;
@@ -50,6 +51,7 @@ import com.androprogrammer.tutorials.samples.TrackUserDemo;
 import com.androprogrammer.tutorials.samples.VideoPlayerDemo;
 import com.androprogrammer.tutorials.samples.ViewPagerDemo;
 import com.androprogrammer.tutorials.samples.VoiceInputDemo;
+import com.androprogrammer.tutorials.samples.WebViewCustomizationDemo;
 import com.androprogrammer.tutorials.util.Common;
 
 import java.io.File;
@@ -285,7 +287,8 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
         tutorials.put("Data Caching ", new Intent(this, DataCachingDemo.class));
         tutorials.put("Data Encryption/Decryption", new Intent(this, EncryptionDemo.class));
         tutorials.put("Bottom Bar Demo", new Intent(this, BottomBarDemo.class));
-        tutorials.put("QR Code Scan Demo", new Intent(this, QRCodeScanDemo.class));
+        tutorials.put("Barcode scan Demo", new Intent(this, QRCodeScanDemo.class));
+        tutorials.put("Webview Error Page Demo", new Intent(this, WebViewCustomizationDemo.class));
     }
 
     private void captureScreen() {
