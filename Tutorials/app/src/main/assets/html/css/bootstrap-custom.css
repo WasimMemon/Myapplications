@@ -1,0 +1,189 @@
+root { 
+    display: block;
+}
+
+body { 
+  height: 100%;
+  color: #007DB4;
+  background: #52bf90;
+  font: 12px Helvetica;
+  padding-top: 5px; /* 60px to make the container go all the way to the bottom of the topbar */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.page {
+    min-height: 100%;
+}
+
+.noscript {
+    text-align:center;
+    font-weight: bold;
+    color: #f00;
+}
+
+.error_page .container {
+    max-width: 300px;
+}
+
+/* The gray background content wrapper */
+.error_content {
+   background: #fff;
+    padding: 3em 4em;
+    width: 80%;
+    margin: 30px auto;
+   /*margin: 0 -20px;  negative indent the amount of the padding to maintain the grid system */
+    -webkit-border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
+    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15);
+    box-shadow: 0 2px 2px rgba(0,0,0,.15);
+}
+
+h3 {
+    font-size: 30px;
+    text-transform: capitalize;
+    margin: 0;
+    color: #333;
+    font-weight:400;
+    text-align: center;
+}
+
+p {
+    color:#000;
+    letter-spacing:1px;
+    line-height:1.8em;
+    font-size:13px;
+    font-weight:400;
+    margin: 2em 0;
+    text-align: center;
+}
+
+#btn_tryAgain {
+    color: #fff;
+    min-width: 60px;
+    background-color: #52bf90;
+    vertical-align: middle;
+    white-space: nowrap;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    box-shadow: 0 4px 2px rgba(0,0,0,.25);
+}
+
+
+/** Responsive **/
+@media screen and (max-width: 1440px){
+    .error_content {
+        padding: 4em 5em;
+        width: 52%;
+    }
+}
+@media screen and (max-width: 1366px){
+    .error_content {
+        padding: 4em 5em;
+        width: 55%;
+    }
+}
+@media screen and (max-width: 1280px){
+    .error_content {
+        padding: 4em 5em;
+        width: 60%;
+    }
+    .error_content span.fa.fa-frown-o {
+        font-size: 90px;
+    }
+}
+@media screen and (max-width: 1080px){
+    .error_content {
+        padding: 3em 4em;
+        width: 70%;
+    }
+    h1 {
+        font-size: 45px;
+        letter-spacing: 3px;
+    }
+}
+@media screen and (max-width: 1024px){
+    .error_content {
+        padding: 3em 3em;
+        width: 72%;
+    }
+    h2 {
+        font-size: 28px;
+    }
+}
+@media screen and (max-width: 991px){
+    .error_content {
+        padding: 3em 3em;
+        width: 75%;
+    }
+    p {
+        margin: 1.5em 0;
+    }
+}
+@media screen and (max-width: 900px){
+    p {
+        letter-spacing: .5px;
+    }
+}
+@media screen and (max-width: 768px){
+    h1 {
+        font-size: 40px;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+    }
+    h2 {
+        font-size: 26px;
+    }
+    .error_content span.fa.fa-frown-o {
+        font-size: 80px;
+    }
+}
+@media screen and (max-width: 640px){
+    .error_content {
+        padding: 2em 3em;
+    }
+}
+@media screen and (max-width: 480px){
+    h2 {
+        font-size: 24px;
+    }
+    .error_content span.fa.fa-frown-o {
+        font-size: 70px;
+    }
+    a.b-home {
+        padding: .8em 1.5em;
+    }
+    .footer p {
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 414px){
+    .error_content {
+        padding: 2em 2em;
+    }
+    h2 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 375px){
+    p {
+        letter-spacing: 0px;
+    }
+}
+@media screen and (max-width: 320px){
+    h2 {
+        font-size: 19px;
+        letter-spacing: 0px;
+    }
+}
+/** /Responsive **/

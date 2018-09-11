@@ -1,14 +1,17 @@
 package com.androprogrammer.tutorials.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.widget.Toast;
 
-import com.androprogrammer.tutorials.R;
+import com.androprogrammer.tutorials.listners.DialogButtonClickListener;
 
 /**
  * Created by Wasim on 29-06-2015.
@@ -50,6 +53,48 @@ public class Common {
 
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
+
+    public static void showDialog(Context context,
+                                  String dialogTitle, String dialogMessage, String textPositiveButton,
+                                  String textNegativeButton,
+                                  final DialogButtonClickListener buttonClickListener,
+                                  final int dialogIdentifier) {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setTitle(dialogTitle);
+        alertDialogBuilder.setMessage(dialogMessage);
+        alertDialogBuilder.setCancelable(false);
+
+        alertDialogBuilder.setPositiveButton(textPositiveButton, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id1) {
+                if (buttonClickListener == null) {
+                    dialog.dismiss();
+                } else {
+                    buttonClickListener.onPositiveButtonClicked(dialogIdentifier);
+                }
+            }
+        });
+
+        if (textNegativeButton != null) {
+            alertDialogBuilder.setNegativeButton(textNegativeButton, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id1) {
+                    if (buttonClickListener == null) {
+                        dialog.dismiss();
+                    } else {
+                        buttonClickListener.onNegativeButtonClicked(dialogIdentifier);
+                    }
+                }
+            });
+        }
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        //	alertDialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+
+        if (!((Activity) context).isFinishing()) {
+            alertDialog.show();
+        }
+
     }
 
     /**
