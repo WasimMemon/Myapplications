@@ -11,6 +11,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
         vectorDrawables{
             useSupportLibrary = true
         }
@@ -45,6 +47,10 @@ android {
     }
     compileOptions {
         incremental false
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
     }
 }
 
@@ -83,4 +89,17 @@ dependencies {
 
     // For custom radio button
     implementation 'com.github.worker8:RadioGroupPlus:v1.0.1'
+
+    // For espresso test cases
+    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    
+    androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:2.0') {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+    androidTestImplementation "com.android.support.test:rules:1.0.2"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
 }
