@@ -51,20 +51,6 @@ public class ImageAnimationDemo extends Baseactivity implements GridView.OnItemC
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        /*if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-        {
-            getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
-            //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
-            //set the transition
-            Transition ts = new Explode();
-            ts.setDuration(3000);
-            getWindow().setEnterTransition(ts);
-            getWindow().setExitTransition(ts);
-
-            //getWindow().setNavigationBarColor(getResources().getColor(R.color.second_primary));
-        }*/
-
         super.onCreate(savedInstanceState);
 
         setReference();
@@ -74,6 +60,8 @@ public class ImageAnimationDemo extends Baseactivity implements GridView.OnItemC
             getWindow().setStatusBarColor(getResources().getColor(R.color.second_primarydark));
             toolbar.setBackgroundColor(getResources().getColor(R.color.second_primary));
         }
+
+        setSimpleToolbar(true);
 
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 

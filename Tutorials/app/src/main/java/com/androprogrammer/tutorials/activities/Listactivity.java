@@ -1,7 +1,9 @@
 package com.androprogrammer.tutorials.activities;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,10 +29,10 @@ import android.widget.FrameLayout;
 
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.adapters.TutorialListAdapter;
+import com.androprogrammer.tutorials.listners.DialogButtonClickListener;
 import com.androprogrammer.tutorials.listners.RecyclerItemClickListener;
 import com.androprogrammer.tutorials.samples.AppsListviewDemo;
 import com.androprogrammer.tutorials.samples.AsyncFileReadDemo;
-import com.androprogrammer.tutorials.samples.CustomImageDemo;
 import com.androprogrammer.tutorials.samples.QRCodeScanDemo;
 import com.androprogrammer.tutorials.samples.BatteryLevelDemo;
 import com.androprogrammer.tutorials.samples.BottomBarDemo;
@@ -67,7 +70,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class Listactivity extends Baseactivity implements SearchView.OnQueryTextListener, RecyclerItemClickListener.OnItemClickListener {
+public class Listactivity extends Baseactivity implements SearchView.OnQueryTextListener, RecyclerItemClickListener.OnItemClickListener, DialogButtonClickListener {
 
     protected View view;
 
@@ -89,8 +92,16 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
 
     private static final int REQUEST_CODE = 1234;
     private static final int SPAN_COUNT = 2;
+    public static final int MULTIPLE_PERMISSIONS = 1122;
 
-    //private ComponentName mDeviceAdminSample;
+
+    String[] permissions = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_PHONE_STATE};
+
     private SearchView sv;
     private MenuItem searchItem;
     private MenuItem list_type;
@@ -113,73 +124,104 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
         setReference();
 
         setSimpleToolbar(true);
-        //rootLogger.setLevel(Level.ALL);
 
-        addListItem();
+        if (checkPermissions()) {
 
-        /*mainlayout.post(new Runnable() {
-            @Override
-            public void run() {
-                captureScreen();
-            }
-        });*/
+            //  permissions  granted.
 
-        //Log.d("List", "" + tutorials.size());
+            addListItem();
 
-        // Launch the activity to have the user enable our admin.
-        /*Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdminSample);
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                getResources().getString(R.string.admin_receiver_status_disable_warning));
-        startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);*/
+            initializeView();
 
-        initializeView();
+            // To access it from service.
+            listActivity = this;
 
-        // To access it from service.
-        listActivity = this;
+        }
 
     }
 
     @Override
     public void setReference() {
-        view = LayoutInflater.from(this).inflate(R.layout.activity_mainlist, container);
+        view = LayoutInflater.from(Listactivity.this).inflate(R.layout.activity_mainlist, container);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         mLayoutManager = new LinearLayoutManager(Listactivity.this);
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
-
-        //mDeviceAdminSample = new ComponentName(this, DeviceAdminReciver.class);
 
     }
 
     private void initializeView() {
 
-        new Thread(new Runnable() {
+
+        list_keys = new ArrayList<String>(tutorials.keySet());
+
+        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
+
+        mAdapter = new TutorialListAdapter(Listactivity.this, list_keys);
+
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                tutorial_list.setAdapter(mAdapter);
 
-                list_keys = new ArrayList<String>(tutorials.keySet());
-
-                setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-
-                mAdapter = new TutorialListAdapter(Listactivity.this, list_keys);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tutorial_list.setAdapter(mAdapter);
-
-                        tutorial_list.addOnItemTouchListener(new RecyclerItemClickListener(Listactivity.this,
-                                tutorial_list, Listactivity.this));
-
-                    }
-                });
+                tutorial_list.addOnItemTouchListener(new RecyclerItemClickListener(Listactivity.this,
+                        tutorial_list, Listactivity.this));
 
             }
-        }).start();
+        });
 
+
+    }
+
+    private boolean checkPermissions() {
+        int result;
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        for (String p : permissions) {
+            result = ContextCompat.checkSelfPermission(Listactivity.this, p);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(p);
+            }
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissionsList[], int[] grantResults) {
+        switch (requestCode) {
+            case MULTIPLE_PERMISSIONS: {
+                if (grantResults.length > 0) {
+                    String permissionsDenied = "";
+                    for (String per : permissionsList) {
+                        if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                            permissionsDenied += "\n" + per;
+
+                        }
+
+                    }
+                    // Show permissionsDenied
+                    //updateViews();
+
+                    if (!TextUtils.isEmpty(permissionsDenied)) {
+
+                        Common.showDialog(Listactivity.this, "Permission Required", "All the requested permission(" + permissionsDenied + ") required to run the application and tutorials so please allow all the permissions",
+                                getResources().getString(android.R.string.ok),
+                                null, Listactivity.this, 1);
+                    } else {
+                        addListItem();
+                        initializeView();
+                    }
+
+
+                }
+                return;
+            }
+        }
     }
 
     public static Listactivity getInstance() {
@@ -319,7 +361,7 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
 
         list_type = menu.findItem(R.id.menu_list_style);
 
-        searchItem = menu.findItem(R.id.search);
+        searchItem = menu.findItem(R.id.action_search);
         sv = (SearchView) MenuItemCompat.getActionView(searchItem);
         sv.setOnQueryTextListener(this);
 
@@ -511,5 +553,16 @@ public class Listactivity extends Baseactivity implements SearchView.OnQueryText
             }
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    @Override
+    public void onPositiveButtonClicked(int dialogIdentifier) {
+        if (dialogIdentifier == 1)
+            checkPermissions();
+    }
+
+    @Override
+    public void onNegativeButtonClicked(int dialogIdentifier) {
+
     }
 }

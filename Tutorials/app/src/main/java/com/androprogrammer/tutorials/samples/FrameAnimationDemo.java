@@ -26,6 +26,9 @@ public class FrameAnimationDemo extends Baseactivity
 
         super.onCreate(savedInstanceState);
         setReference();
+
+        setSimpleToolbar(true);
+
         setToolbarSubTittle(this.getClass().getSimpleName());
 
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));

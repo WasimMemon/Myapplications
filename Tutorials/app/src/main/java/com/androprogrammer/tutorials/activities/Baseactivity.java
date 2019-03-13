@@ -4,20 +4,18 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.androprogrammer.tutorials.MainController;
 import com.androprogrammer.tutorials.R;
 import com.androprogrammer.tutorials.util.UserPreferenceManager;
 import com.anupcowkur.reservoir.Reservoir;
 
 
-public abstract class Baseactivity extends ActionBarActivity {
+public abstract class Baseactivity extends AppCompatActivity {
 
 	private View view_simpleToolbar;
 	public FrameLayout container;

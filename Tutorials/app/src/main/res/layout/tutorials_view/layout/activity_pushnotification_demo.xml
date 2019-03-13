@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/padding_normal"
     android:paddingRight="@dimen/padding_normal"
-    android:paddingTop="?attr/actionBarSize"
     tools:context="com.androprogrammer.tutorials.samples.PushNotificationDemo">
 
 

@@ -71,7 +71,7 @@ public class WebViewCustomizationDemo extends Baseactivity {
     @Override
     public void setReference() {
 
-        viewLayout = LayoutInflater.from(this).inflate(R.layout.activity_web_customization, container);
+        viewLayout = LayoutInflater.from(this).inflate(R.layout.activity_web_customization_demo, container);
 
         ButterKnife.bind(this, viewLayout);
 

@@ -47,6 +47,8 @@ public class VoiceInputDemo extends Baseactivity {
         super.onCreate(savedInstanceState);
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         setToolbarSubTittle(this.getClass().getSimpleName());

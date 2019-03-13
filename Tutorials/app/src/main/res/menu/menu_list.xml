@@ -1,18 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.androprogrammer.tutorials.activities.Listactivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
+    <item android:id="@+id/action_aboutus"
+        android:title="@string/action_aboutus"
+        android:orderInCategory="3"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/search"
+        android:id="@+id/action_search"
         android:title="Search"
+        android:orderInCategory="1"
         android:icon="@mipmap/ic_action_search"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item
+        android:id="@+id/menu_list_style"
+        android:orderInCategory="2"
+        android:icon="@mipmap/ic_action_gridtype"
+        android:title="Grid layout"
+        app:showAsAction="always" />
 
 </menu>

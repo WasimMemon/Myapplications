@@ -43,6 +43,8 @@ public class PushNotificationDemo extends Baseactivity implements View.OnClickLi
 
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarSubTittle(this.getClass().getSimpleName());
 
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));

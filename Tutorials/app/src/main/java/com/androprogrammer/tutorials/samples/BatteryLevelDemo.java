@@ -45,6 +45,8 @@ public class BatteryLevelDemo extends Baseactivity {
 
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         setToolbarSubTittle(this.getClass().getSimpleName());

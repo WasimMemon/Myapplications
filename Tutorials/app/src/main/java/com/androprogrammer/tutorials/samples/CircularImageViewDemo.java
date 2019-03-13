@@ -22,6 +22,8 @@ public class CircularImageViewDemo extends Baseactivity {
 
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

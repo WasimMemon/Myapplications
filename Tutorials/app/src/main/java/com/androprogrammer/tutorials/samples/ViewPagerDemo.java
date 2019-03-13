@@ -44,9 +44,9 @@ public class ViewPagerDemo extends Baseactivity implements ViewPager.OnPageChang
 
         setReference();
 
-        toolbar.setVisibility(View.GONE);
+        //toolbar.setVisibility(View.GONE);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 

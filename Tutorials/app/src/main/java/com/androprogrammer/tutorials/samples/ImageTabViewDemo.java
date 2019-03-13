@@ -53,6 +53,8 @@ public class ImageTabViewDemo extends Baseactivity implements ActionBar.TabListe
 
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarSubTittle(this.getClass().getSimpleName());
 
         setToolbarElevation(0);

@@ -67,6 +67,8 @@ public class TrackUserDemo extends Baseactivity
 
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarElevation(getResources().getDimension(R.dimen.elevation_normal));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -102,7 +104,7 @@ public class TrackUserDemo extends Baseactivity
     {
         try {
             if (googleMap == null) {
-                googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+                //googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
                 // check if map is created successfully or not
                 if (googleMap == null)
                 {

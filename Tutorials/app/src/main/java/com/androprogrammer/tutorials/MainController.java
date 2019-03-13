@@ -18,7 +18,7 @@ public class MainController extends Application {
     private static MainController appInstance;
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor sharedPreferencesEditor;
-    private static Context mContext;
+    //private static Context mContext;
 
     @Override
     public void onCreate()
@@ -26,18 +26,18 @@ public class MainController extends Application {
         super.onCreate();
         appInstance = this;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        sharedPreferencesEditor = sharedPreferences.edit();
-        setContext(getApplicationContext());
+        //sharedPreferencesEditor = sharedPreferences.edit();
+        //setContext(getApplicationContext());
         MultiDex.install(this);
     }
 
-    public static Context getContext() {
+    /*public static Context getContext() {
         return mContext;
     }
 
     public static void setContext(Context mctx) {
         mContext = mctx;
-    }
+    }*/
 
     public static MainController getAppInstance() {
         if (appInstance == null)
@@ -54,7 +54,7 @@ public class MainController extends Application {
 
     public static SharedPreferences getApplicationPreference() {
         if (sharedPreferences == null)
-            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appInstance);
 
         return sharedPreferences;
     }

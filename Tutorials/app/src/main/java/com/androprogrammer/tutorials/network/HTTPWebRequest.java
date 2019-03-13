@@ -87,7 +87,7 @@ public class HTTPWebRequest {
     public static void setImageFromURL(ImageView iv, String ImageURL, int height, int width, int borderRadious) {
         Log.d(TAG,ImageURL);
 
-        Ion.with(MainController.getContext())
+        Ion.with(MainController.getAppInstance())
                 .load(ImageURL)
                 .setLogging("MyLogs", Log.VERBOSE)
                 .setTimeout(500000)

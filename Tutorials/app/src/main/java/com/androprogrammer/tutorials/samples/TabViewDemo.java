@@ -37,27 +37,14 @@ public class TabViewDemo extends Baseactivity implements ActionBar.TabListener {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-       /* if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-        {
-            getWindow().requestFeature(android.view.Window.FEATURE_CONTENT_TRANSITIONS);
-            //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
-            //set the transition
-            Transition ts = new Slide();
-            ts.setDuration(3000);
-            getWindow().setEnterTransition(ts);
-            getWindow().setExitTransition(ts);
-
-
-            //getWindow().setNavigationBarColor(getResources().getColor(R.color.second_primary));
-        }*/
-
         super.onCreate(savedInstanceState);
 
         //opening transition animations
         overridePendingTransition(R.anim.activity_open_translate, R.anim.activity_close_scale);
 
         setReference();
+
+        setSimpleToolbar(true);
 
         setToolbarSubTittle(this.getClass().getSimpleName());
 

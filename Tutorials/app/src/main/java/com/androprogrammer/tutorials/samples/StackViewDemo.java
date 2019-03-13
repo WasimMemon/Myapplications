@@ -43,6 +43,8 @@ public class StackViewDemo extends Baseactivity {
 
         setReference();
 
+        setSimpleToolbar(true);
+
         setToolbarElevation(0);
 
         setToolbarSubTittle(this.getClass().getSimpleName());

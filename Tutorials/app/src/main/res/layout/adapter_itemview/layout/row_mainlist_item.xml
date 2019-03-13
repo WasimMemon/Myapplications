@@ -9,7 +9,7 @@
     android:id="@+id/row_tutorial_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="1dp"
     android:background="@android:color/white"
     android:focusable="false"
     android:gravity="center_vertical"

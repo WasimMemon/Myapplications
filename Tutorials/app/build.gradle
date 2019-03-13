@@ -94,6 +94,9 @@ dependencies {
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    // For espresso web view testcases
+    androidTestImplementation 'com.android.support.test.espresso:espresso-web:3.0.2'
     
     androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude group: 'com.android.support', module: 'appcompat'
